@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <color name="verde_olivo">#4F7942</color> <!--  boton principal titulos iconos-->
+    <color name="verde_pistacho">#90CF8E</color> <!--  Detalles bordes, activos-->
+    <color name="verde_celadon">#A7DCA5</color> <!--  boton secundario, adorno-->
+    <color name="verde_te">#C6EDC3</color>  <!--  fondo de tarjetas suave-->
+    <color name="verde_nyanza">#E4FDE1</color>  <!--  fondo de pantalla-->
+    <color name="verde_honeydew">#EFFDEE</color>    <!--  fondo alternativo suave-->
+
+
     <!-- Paleta de la veterinaria: verde azulado (salud) + naranja cálido (acentos) -->
     <color name="vet_primary">#00796B</color>
     <color name="vet_on_primary">#FFFFFF</color>

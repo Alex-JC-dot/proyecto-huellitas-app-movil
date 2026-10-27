@@ -1,14 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Tema base de la app (modo claro) -->
     <style name="Base.Theme.ProyectoSis145" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/vet_primary</item>
-        <item name="colorOnPrimary">@color/vet_on_primary</item>
-        <item name="colorPrimaryContainer">@color/vet_primary_container</item>
-        <item name="colorOnPrimaryContainer">@color/vet_on_primary_container</item>
-        <item name="colorSecondary">@color/vet_secondary</item>
-        <item name="colorOnSecondary">@color/vet_on_secondary</item>
-        <item name="colorSecondaryContainer">@color/vet_secondary_container</item>
-        <item name="colorOnSecondaryContainer">@color/vet_on_secondary_container</item>
+        <item name="colorPrimary">@color/verde_olivo</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/verde_te</item>
+        <item name="colorOnPrimaryContainer">@color/verde_olivo</item>
+        <item name="colorSecondary">@color/verde_pistacho</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondaryContainer">@color/verde_celadon</item>
+        <item name="colorOnSecondaryContainer">@color/black</item>
+        <item name="android:colorBackground">@color/verde_nyanza</item>
+        <item name="colorSurface">@color/white</item>
     </style>
 
     <style name="Theme.ProyectoSis145" parent="Base.Theme.ProyectoSis145" />
