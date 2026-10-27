@@ -9,15 +9,17 @@ import com.AlexYChristian.ProyectoSis145.ui.menu.MenuActivity
 
 /**
  * Punto de entrada de la app. No tiene diseño: solo revisa si hay una sesión
- * guardada (SharedPreferences) y abre el Menú o el Login según corresponda.
+ * guardada con "Recordarme" (SharedPreferences) y abre el Menú o el Login según corresponda.
  */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val destino = if (SessionManager(this).haySesionIniciada()) {
+        val session = SessionManager(this)
+        val destino = if (session.haySesionRecordada()) {
             MenuActivity::class.java
         } else {
+            session.cerrarSesion()   // si no marcó "Recordarme", se pide login otra vez
             LoginActivity::class.java
         }
         startActivity(Intent(this, destino))

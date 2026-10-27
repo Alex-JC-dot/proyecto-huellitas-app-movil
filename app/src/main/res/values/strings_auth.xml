@@ -7,6 +7,9 @@
     <string name="login_huella_descripcion">Huella de mascota</string>
     <string name="campo_email">Email</string>
     <string name="campo_password">Contraseña</string>
+    <string name="hint_email">ejemplo@correo.com</string>
+    <string name="hint_password">Tu contraseña</string>
+    <string name="login_recordarme">Recordarme en este dispositivo</string>
     <string name="login_boton_ingresar">Ingresar</string>
     <string name="login_sin_cuenta">¿No tienes cuenta?</string>
     <string name="login_ir_registro">Regístrate</string>
