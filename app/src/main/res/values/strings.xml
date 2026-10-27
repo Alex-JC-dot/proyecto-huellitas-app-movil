@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">ProyectoSis145</string>
+    <string name="app_name">Veterinaria</string>
+
+    <!-- Títulos de pantallas -->
+    <string name="titulo_login">Iniciar sesión</string>
+    <string name="titulo_registro">Crear cuenta</string>
+    <string name="titulo_menu">Menú principal</string>
+    <string name="titulo_servicios">Servicios</string>
+    <string name="titulo_mascotas">Mis mascotas</string>
+    <string name="titulo_registrar_mascota">Registrar mascota</string>
+    <string name="titulo_detalle_mascota">Detalle de mascota</string>
+    <string name="titulo_agendar_cita">Agendar cita</string>
+    <string name="titulo_citas">Mis citas</string>
 </resources>

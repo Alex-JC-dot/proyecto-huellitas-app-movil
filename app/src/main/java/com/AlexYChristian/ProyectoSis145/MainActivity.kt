@@ -1,20 +1,26 @@
 package com.AlexYChristian.ProyectoSis145
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.AlexYChristian.ProyectoSis145.data.SessionManager
+import com.AlexYChristian.ProyectoSis145.ui.auth.LoginActivity
+import com.AlexYChristian.ProyectoSis145.ui.menu.MenuActivity
 
+/**
+ * Punto de entrada de la app. No tiene diseño: solo revisa si hay una sesión
+ * guardada (SharedPreferences) y abre el Menú o el Login según corresponda.
+ */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        val destino = if (SessionManager(this).haySesionIniciada()) {
+            MenuActivity::class.java
+        } else {
+            LoginActivity::class.java
         }
+        startActivity(Intent(this, destino))
+        finish()
     }
 }

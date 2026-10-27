@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoSis145">
+        <!-- Pantalla de inicio: decide si mostrar el Login o el Menú -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -21,6 +22,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Pantallas de la app -->
+        <activity android:name=".ui.auth.LoginActivity" android:exported="false" />
+        <activity android:name=".ui.auth.RegistroActivity" android:exported="false" />
+        <activity android:name=".ui.menu.MenuActivity" android:exported="false" />
+        <activity android:name=".ui.servicios.ServiciosActivity" android:exported="false" />
+        <activity android:name=".ui.mascotas.MascotasActivity" android:exported="false" />
+        <activity android:name=".ui.mascotas.RegistrarMascotaActivity" android:exported="false" />
+        <activity android:name=".ui.mascotas.DetalleMascotaActivity" android:exported="false" />
+        <activity android:name=".ui.citas.AgendarCitaActivity" android:exported="false" />
+        <activity android:name=".ui.citas.CitasActivity" android:exported="false" />
     </application>
 
 </manifest>

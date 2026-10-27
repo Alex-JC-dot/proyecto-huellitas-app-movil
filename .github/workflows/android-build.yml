@@ -1,0 +1,28 @@
+# Compila la app en cada Pull Request y en cada push a main.
+# Si aparece ❌ en el PR, el código no compila y no se debe unir.
+name: Compilar Android
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Compilar APK de depuración
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Ejecutar pruebas unitarias
+        run: ./gradlew testDebugUnitTest

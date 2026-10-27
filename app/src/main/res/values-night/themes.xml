@@ -1,7 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Tema base de la app (modo oscuro) -->
     <style name="Base.Theme.ProyectoSis145" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/vet_primary_dark</item>
+        <item name="colorOnPrimary">@color/vet_on_primary_dark</item>
+        <item name="colorPrimaryContainer">@color/vet_primary_container_dark</item>
+        <item name="colorOnPrimaryContainer">@color/vet_on_primary_container_dark</item>
+        <item name="colorSecondary">@color/vet_secondary_dark</item>
+        <item name="colorOnSecondary">@color/vet_on_secondary_dark</item>
+        <item name="colorSecondaryContainer">@color/vet_secondary_container_dark</item>
+        <item name="colorOnSecondaryContainer">@color/vet_on_secondary_container_dark</item>
     </style>
 </resources>

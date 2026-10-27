@@ -1,8 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Tema base de la app (modo claro) -->
     <style name="Base.Theme.ProyectoSis145" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/vet_primary</item>
+        <item name="colorOnPrimary">@color/vet_on_primary</item>
+        <item name="colorPrimaryContainer">@color/vet_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/vet_on_primary_container</item>
+        <item name="colorSecondary">@color/vet_secondary</item>
+        <item name="colorOnSecondary">@color/vet_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/vet_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/vet_on_secondary_container</item>
     </style>
 
     <style name="Theme.ProyectoSis145" parent="Base.Theme.ProyectoSis145" />
