@@ -21,12 +21,6 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v5
 
-      - name: Versiones disponibles (temporal)
-        run: |
-          v=$(curl -s https://repo1.maven.org/maven2/com/google/devtools/ksp/symbol-processing-gradle-plugin/maven-metadata.xml | grep -oE '<version>2\.3[^<]*' | sed 's/<version>//' | tail -8 | tr '\n' ' ')
-          echo "::notice title=KSP::$v"
-          r=$(curl -s https://dl.google.com/android/maven2/androidx/room/room-runtime/maven-metadata.xml | grep -oE '<version>2\.[78][^<]*' | sed 's/<version>//' | tail -6 | tr '\n' ' ')
-          echo "::notice title=Room::$r"
 
       - name: Compilar APK de depuración
         run: |
