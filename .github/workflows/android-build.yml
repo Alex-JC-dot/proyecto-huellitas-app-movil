@@ -1,0 +1,37 @@
+# Compila la app en cada Pull Request y en cada push a main.
+# Si aparece ❌ en el PR, el código no compila y no se debe unir.
+name: Compilar Android
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v5
+
+
+      - name: Compilar APK de depuración
+        run: |
+          set -o pipefail
+          ./gradlew assembleDebug 2>&1 | tee build.log || {
+            # Muestra el error como anotación en el PR para encontrarlo rápido
+            grep -E "^e: |What went wrong|^> |error:" build.log | head -30 | while IFS= read -r linea; do
+              echo "::error title=Error de compilación::$linea"
+            done
+            exit 1
+          }
+
+      - name: Ejecutar pruebas unitarias
+        run: ./gradlew testDebugUnitTest

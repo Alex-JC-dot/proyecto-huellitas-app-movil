@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Paleta de la veterinaria: verde azulado (salud) + naranja cálido (acentos) -->
+    <color name="vet_primary">#00796B</color>
+    <color name="vet_on_primary">#FFFFFF</color>
+    <color name="vet_primary_container">#B2DFDB</color>
+    <color name="vet_on_primary_container">#00201C</color>
+    <color name="vet_secondary">#F57C00</color>
+    <color name="vet_on_secondary">#FFFFFF</color>
+    <color name="vet_secondary_container">#FFE0B2</color>
+    <color name="vet_on_secondary_container">#2E1500</color>
+
+    <!-- Versión para modo oscuro -->
+    <color name="vet_primary_dark">#80CBC4</color>
+    <color name="vet_on_primary_dark">#003731</color>
+    <color name="vet_primary_container_dark">#005048</color>
+    <color name="vet_on_primary_container_dark">#B2DFDB</color>
+    <color name="vet_secondary_dark">#FFB74D</color>
+    <color name="vet_on_secondary_dark">#4A2800</color>
+    <color name="vet_secondary_container_dark">#6A3C00</color>
+    <color name="vet_on_secondary_container_dark">#FFE0B2</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
