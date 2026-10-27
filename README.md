@@ -1,20 +1,8 @@
-# Proyecto SIS 145 · App Móvil
+# Proyecto  App Móvil
 
-Prototipo de aplicación Android desarrollado en **Kotlin** con interfaces en **XML (Views)** para la materia **SIS 145**. Es un proyecto colaborativo que aplica buenas prácticas de desarrollo móvil, control de versiones con Git y trabajo en equipo mediante ramas y Pull Requests.
+Prototipo de aplicación Android desarrollado en **Kotlin** con interfaces en **XML (Views)**. Es un proyecto colaborativo que aplica buenas prácticas de desarrollo móvil, control de versiones con Git y trabajo en equipo mediante ramas y Pull Requests.
 
 > 🚧 **Estado:** en desarrollo. La descripción de la funcionalidad y las pantallas se completará a medida que avance el prototipo.
-
----
-
-## 📱 Descripción
-
-_Por completar: qué problema resuelve la app, para quién es y qué puede hacer el usuario._
-
-### Pantallas
-
-| Pantalla | Descripción | Responsable | Estado |
-|---|---|---|---|
-| _Por definir_ | | | ⏳ Pendiente |
 
 ---
 
@@ -98,27 +86,3 @@ feat: agrega diseño de la pantalla de login
 fix: corrige cierre de la app al guardar
 docs: actualiza el README
 ```
-
-### 4. Integrar los cambios
-1. Subir la rama: `git push -u origin feature/nombre-de-la-tarea`
-2. Abrir un **Pull Request** hacia `main` en GitHub.
-3. El otro integrante revisa que compile y funcione, y lo aprueba.
-4. Se hace **Merge** y se borra la rama.
-5. Todos actualizan su `main` con `git pull`.
-
-### 5. Archivos compartidos
-Avisar al equipo antes de modificar archivos que usan todos, para evitar conflictos:
-`AndroidManifest.xml`, `strings.xml`, `colors.xml`, `themes.xml`, `build.gradle.kts` y `libs.versions.toml`.
-
----
-
-## 👥 Equipo
-
-| Integrante | GitHub |
-|---|---|
-| Alex | [@Alex-JC-dot](https://github.com/Alex-JC-dot) |
-| Christian | _por agregar_ |
-
----
-
-Proyecto académico · SIS 145
