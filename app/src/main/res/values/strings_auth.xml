@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos de Login y Registro (Alex). Archivo separado para no chocar con strings.xml -->
+<resources>
+    <!-- Login -->
+    <string name="login_bienvenida">Bienvenido</string>
+    <string name="login_subtitulo">Inicia sesión para cuidar a tus mascotas</string>
+    <string name="login_huella_descripcion">Huella de mascota</string>
+    <string name="campo_email">Email</string>
+    <string name="campo_password">Contraseña</string>
+    <string name="login_boton_ingresar">Ingresar</string>
+    <string name="login_sin_cuenta">¿No tienes cuenta?</string>
+    <string name="login_ir_registro">Regístrate</string>
+
+    <!-- Mensajes de error -->
+    <string name="error_email_vacio">Ingresa tu email</string>
+    <string name="error_email_invalido">El email no es válido</string>
+    <string name="error_password_vacia">Ingresa tu contraseña</string>
+    <string name="error_credenciales">Email o contraseña incorrectos</string>
+</resources>
