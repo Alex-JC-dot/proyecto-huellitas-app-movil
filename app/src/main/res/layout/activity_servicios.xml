@@ -18,33 +18,51 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/contenidoCabecera"
+        <!-- Cabecera: fondo verde con un gatito decorativo detrás del texto -->
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/verde_olivo"
-            android:orientation="vertical"
-            android:paddingStart="24dp"
-            android:paddingTop="20dp"
-            android:paddingEnd="24dp"
-            android:paddingBottom="48dp">
+            android:background="@color/verde_olivo">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/servicios_titulo"
-                android:textColor="@color/white"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+            <ImageView
+                android:layout_width="92dp"
+                android:layout_height="100dp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="30dp"
+                android:alpha="0.3"
+                android:importantForAccessibility="no"
+                android:scaleType="fitEnd"
+                app:srcCompat="@drawable/deco_gato_estirandose"
+                app:tint="@color/white" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/contenidoCabecera"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="@string/servicios_subtitulo"
-                android:textColor="@color/verde_te"
-                android:textSize="14sp" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:paddingStart="24dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="48dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/servicios_titulo"
+                    android:textColor="@color/white"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/servicios_subtitulo"
+                    android:textColor="@color/verde_te"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </FrameLayout>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"

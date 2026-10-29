@@ -2,6 +2,7 @@
 <!--
     Mis mascotas
     FrameLayout (raíz)
+     ├─ Patitas decorativas (abajo, detrás de todo)
      ├─ LinearLayout: cabecera verde + filtros + lista (o mensaje si está vacía)
      └─ Botón flotante "Registrar" (abajo a la derecha)
 -->
@@ -14,39 +15,65 @@
     android:background="?android:attr/colorBackground"
     tools:context=".ui.mascotas.MascotasActivity">
 
+    <!-- Decoración: patitas asomándose abajo (detrás de la lista) -->
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="182dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="8dp"
+        android:importantForAccessibility="no"
+        app:srcCompat="@drawable/deco_patitas" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- ===== Cabecera ===== -->
-        <LinearLayout
-            android:id="@+id/contenidoCabecera"
+        <!-- Cabecera: fondo verde con un gatito decorativo detrás del texto -->
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/verde_olivo"
-            android:orientation="vertical"
-            android:paddingStart="24dp"
-            android:paddingTop="20dp"
-            android:paddingEnd="24dp"
-            android:paddingBottom="20dp">
+            android:background="@color/verde_olivo">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mascotas_titulo"
-                android:textColor="@color/white"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="64dp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="2dp"
+                android:alpha="0.3"
+                android:importantForAccessibility="no"
+                android:scaleType="fitEnd"
+                app:srcCompat="@drawable/deco_gato_acostado"
+                app:tint="@color/white" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/contenidoCabecera"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="@string/mascotas_subtitulo"
-                android:textColor="@color/verde_te"
-                android:textSize="14sp" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:paddingStart="24dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mascotas_titulo"
+                    android:textColor="@color/white"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/mascotas_subtitulo"
+                    android:textColor="@color/verde_te"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </FrameLayout>
 
         <!-- ===== Filtros por especie (se pueden deslizar a los lados) ===== -->
         <HorizontalScrollView
@@ -130,11 +157,10 @@
             android:visibility="gone">
 
             <ImageView
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:alpha="0.5"
+                android:layout_width="110dp"
+                android:layout_height="130dp"
                 android:importantForAccessibility="no"
-                app:srcCompat="@drawable/ic_huella"
+                app:srcCompat="@drawable/deco_gato_sentado"
                 app:tint="@color/verde_pistacho" />
 
             <TextView
