@@ -3,9 +3,9 @@
     Menú principal (Huellitas)
     ScrollView
      └─ LinearLayout (vertical)
-         ├─ FrameLayout: cabecera verde con la marca, la ilustración y el saludo
+         ├─ FrameLayout: cabecera verde olivo con la marca y la ilustración grande
          └─ MaterialCardView: tarjeta blanca que sube sobre la cabecera
-             └─ secciones con botones hacia cada pantalla + cerrar sesión
+             └─ saludo + secciones con botones hacia cada pantalla + cerrar sesión
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -27,8 +27,8 @@
             android:id="@+id/cabecera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/verde_pistacho"
-            android:paddingBottom="96dp">
+            android:background="@color/verde_olivo"
+            android:paddingBottom="56dp">
 
             <LinearLayout
                 android:id="@+id/contenidoCabecera"
@@ -75,41 +75,22 @@
                      se pinta de blanco con app:tint -->
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="260dp"
+                    android:layout_marginTop="8dp"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/menu_ilustracion_descripcion"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ilustracion_animales"
                     app:tint="@color/white" />
-
-                <!-- Saludo: el nombre se pone desde Kotlin -->
-                <TextView
-                    android:id="@+id/tvSaludo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:textColor="@color/verde_olivo"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    tools:text="¡Hola, Alex! 👋" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/menu_pregunta"
-                    android:textColor="@color/verde_olivo"
-                    android:textSize="16sp" />
             </LinearLayout>
         </FrameLayout>
 
-        <!-- ===== Tarjeta con las opciones: sube 72dp sobre la cabecera ===== -->
+        <!-- ===== Tarjeta con el saludo y las opciones: sube 36dp sobre la cabecera ===== -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="-72dp"
+            android:layout_marginTop="-36dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="24dp"
             app:cardCornerRadius="32dp"
@@ -122,10 +103,28 @@
                 android:orientation="vertical"
                 android:padding="24dp">
 
+                <!-- Saludo: el nombre se pone desde Kotlin -->
+                <TextView
+                    android:id="@+id/tvSaludo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    tools:text="¡Hola, Alex! 👋" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/menu_pregunta"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
                     android:text="@string/menu_seccion_mascotas"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="16sp"

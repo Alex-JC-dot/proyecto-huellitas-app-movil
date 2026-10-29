@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.AlexYChristian.ProyectoSis145.R
@@ -36,6 +37,9 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_menu)
+
+        // La cabecera es verde oscuro: la hora y la batería se muestran en blanco
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = false
 
         // La cabecera verde llega hasta arriba; su contenido baja lo justo
         // para no quedar debajo de la hora y la batería.
