@@ -7,10 +7,10 @@
     android:viewportHeight="280">
     <!-- Onda de fondo, más clara, para dar profundidad -->
     <path
-        android:fillColor="@color/verde_pistacho"
+        android:fillColor="@color/cabecera_onda_atras"
         android:pathData="M0,0 H360 V225 C310,275 250,200 180,235 C110,270 55,215 0,250 Z" />
     <!-- Onda principal -->
     <path
-        android:fillColor="@color/verde_olivo"
+        android:fillColor="@color/cabecera"
         android:pathData="M0,0 H360 V200 C300,255 240,175 170,210 C100,245 50,195 0,225 Z" />
 </vector>

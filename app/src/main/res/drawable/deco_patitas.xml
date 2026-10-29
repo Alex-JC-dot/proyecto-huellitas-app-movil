@@ -9,20 +9,20 @@
     android:viewportHeight="200">
     <!-- Patita grande -->
     <path
-        android:fillColor="@color/verde_te"
+        android:fillColor="@color/fondo_suave"
         android:pathData="M20,200V78A40,40 0,0 1,100,78V200Z"
         android:strokeWidth="3"
-        android:strokeColor="@color/verde_pistacho" />
+        android:strokeColor="@color/detalle_suave" />
     <path
-        android:fillColor="@color/verde_pistacho"
+        android:fillColor="@color/detalle_suave"
         android:pathData="M40,104a20,16 0,1 0,40,0a20,16 0,1 0,-40,0zM32,80a7,7 0,1 0,14,0a7,7 0,1 0,-14,0zM45,66a7,7 0,1 0,14,0a7,7 0,1 0,-14,0zM61,66a7,7 0,1 0,14,0a7,7 0,1 0,-14,0zM74,80a7,7 0,1 0,14,0a7,7 0,1 0,-14,0z" />
     <!-- Patita chica -->
     <path
-        android:fillColor="@color/verde_te"
+        android:fillColor="@color/fondo_suave"
         android:pathData="M122,200V118A30,30 0,0 1,182,118V200Z"
         android:strokeWidth="3"
-        android:strokeColor="@color/verde_pistacho" />
+        android:strokeColor="@color/detalle_suave" />
     <path
-        android:fillColor="@color/verde_pistacho"
+        android:fillColor="@color/detalle_suave"
         android:pathData="M138,140a14,11 0,1 0,28,0a14,11 0,1 0,-28,0zM131,122a5,5 0,1 0,10,0a5,5 0,1 0,-10,0zM141,112a5,5 0,1 0,10,0a5,5 0,1 0,-10,0zM153,112a5,5 0,1 0,10,0a5,5 0,1 0,-10,0zM163,122a5,5 0,1 0,10,0a5,5 0,1 0,-10,0z" />
 </vector>

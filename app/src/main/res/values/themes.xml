@@ -1,16 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Tema base de la app (modo claro) -->
+    <!--
+        Tema de la app. Es DayNight: Android elige solo el modo claro u oscuro según el celular.
+        No hace falta otro tema para la noche: los colores de abajo tienen su versión
+        oscura en values-night/colors.xml.
+    -->
     <style name="Base.Theme.ProyectoSis145" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/verde_olivo</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryContainer">@color/verde_te</item>
-        <item name="colorOnPrimaryContainer">@color/verde_olivo</item>
-        <item name="colorSecondary">@color/verde_pistacho</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="colorSecondaryContainer">@color/verde_celadon</item>
-        <item name="colorOnSecondaryContainer">@color/black</item>
-        <item name="android:colorBackground">@color/verde_nyanza</item>
-        <item name="colorSurface">@color/white</item>
+        <item name="colorPrimary">@color/verde_accion</item>
+        <item name="colorOnPrimary">@color/texto_sobre_accion</item>
+        <item name="colorPrimaryContainer">@color/fondo_suave</item>
+        <item name="colorOnPrimaryContainer">@color/verde_accion</item>
+        <item name="colorSecondary">@color/verde_accion</item>
+        <item name="colorOnSecondary">@color/texto_sobre_accion</item>
+        <item name="colorSecondaryContainer">@color/fondo_suave</item>
+        <item name="colorOnSecondaryContainer">@color/verde_accion</item>
+        <item name="android:colorBackground">@color/fondo_pantalla</item>
+        <item name="colorSurface">@color/superficie</item>
+        <!-- Superficies de Material 3 (tarjetas, diálogos, calendario, reloj) -->
+        <item name="colorSurfaceContainerLowest">@color/superficie</item>
+        <item name="colorSurfaceContainerLow">@color/superficie</item>
+        <item name="colorSurfaceContainer">@color/superficie</item>
+        <item name="colorSurfaceContainerHigh">@color/superficie_alta</item>
+        <item name="colorSurfaceContainerHighest">@color/superficie_mas_alta</item>
     </style>
 
     <style name="Theme.ProyectoSis145" parent="Base.Theme.ProyectoSis145" />

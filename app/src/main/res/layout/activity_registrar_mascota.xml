@@ -26,7 +26,7 @@
             android:id="@+id/contenidoCabecera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/verde_olivo"
+            android:background="@color/cabecera"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:paddingTop="20dp"
@@ -53,7 +53,7 @@
                     android:id="@+id/ivFoto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/verde_te"
+                    android:background="@color/fondo_suave"
                     android:contentDescription="@string/registrar_mascota_foto_descripcion"
                     android:scaleType="centerCrop"
                     app:shapeAppearanceOverlay="@style/FormaCirculo"
@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/registrar_mascota_agregar_foto"
-                android:textColor="@color/verde_te"
+                android:textColor="@color/texto_cabecera_sub"
                 android:textStyle="bold" />
         </LinearLayout>
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Modo oscuro: "blanco y negro con toques de color".
+    Fondos gris casi negro, textos blancos y los acentos en versión pastel clara.
+    Solo se redefinen los colores que cambian; el resto se toma de values/colors.xml.
+-->
+<resources>
+    <color name="verde_accion">#A8D5A6</color>
+    <color name="texto_sobre_accion">#10240E</color>
+    <color name="cabecera">#1E1E1E</color>
+    <color name="cabecera_onda_atras">#2C2C2C</color>
+    <color name="texto_cabecera_sub">#B3B3B3</color>
+    <color name="fondo_pantalla">#121212</color>
+    <color name="superficie">#1E1E1E</color>
+    <color name="superficie_alta">#262626</color>
+    <color name="superficie_mas_alta">#2E2E2E</color>
+    <color name="fondo_suave">#2C2C2C</color>
+    <color name="detalle_suave">#4A4A4A</color>
+    <color name="icono_sobre_acento">#1E1E1E</color>
+
+    <!-- Acentos: fondo neutro oscuro + color pastel claro -->
+    <color name="durazno_fondo">#2C2C2C</color>
+    <color name="durazno">#FFB98A</color>
+    <color name="mantequilla_fondo">#2C2C2C</color>
+    <color name="mantequilla">#F5D66B</color>
+    <color name="rosa_fondo">#2C2C2C</color>
+    <color name="rosa">#FF9BB0</color>
+    <color name="celeste_fondo">#2C2C2C</color>
+    <color name="celeste">#8CC4F5</color>
+    <color name="lavanda_fondo">#2C2C2C</color>
+    <color name="lavanda">#C4B5FF</color>
+</resources>

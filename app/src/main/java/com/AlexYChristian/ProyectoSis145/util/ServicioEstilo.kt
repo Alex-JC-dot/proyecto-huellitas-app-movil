@@ -31,7 +31,7 @@ object ServicioEstilo {
 
     /** Colores de la etiqueta de estado de una cita. */
     fun deEstado(estado: String): Estilo = when (estado) {
-        Cita.ESTADO_COMPLETADA -> Estilo(0, R.color.verde_te, R.color.verde_olivo)
+        Cita.ESTADO_COMPLETADA -> Estilo(0, R.color.fondo_suave, R.color.verde_accion)
         Cita.ESTADO_CANCELADA -> Estilo(0, R.color.rosa_fondo, R.color.rosa)
         else -> Estilo(0, R.color.mantequilla_fondo, R.color.mantequilla)
     }

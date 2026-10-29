@@ -33,7 +33,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/verde_olivo">
+            android:background="@color/cabecera">
 
             <ImageView
                 android:layout_width="150dp"
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="@string/mascotas_subtitulo"
-                    android:textColor="@color/verde_te"
+                    android:textColor="@color/texto_cabecera_sub"
                     android:textSize="14sp" />
             </LinearLayout>
         </FrameLayout>
@@ -161,7 +161,7 @@
                 android:layout_height="130dp"
                 android:importantForAccessibility="no"
                 app:srcCompat="@drawable/deco_gato_sentado"
-                app:tint="@color/verde_pistacho" />
+                app:tint="@color/detalle_suave" />
 
             <TextView
                 android:id="@+id/tvVacioTitulo"
@@ -192,8 +192,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="20dp"
         android:text="@string/mascotas_boton_registrar"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/verde_olivo"
+        android:textColor="@color/texto_sobre_accion"
+        app:backgroundTint="@color/verde_accion"
         app:icon="@drawable/ic_agregar"
-        app:iconTint="@color/white" />
+        app:iconTint="@color/texto_sobre_accion" />
 </FrameLayout>

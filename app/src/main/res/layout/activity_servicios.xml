@@ -22,7 +22,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/verde_olivo">
+            android:background="@color/cabecera">
 
             <ImageView
                 android:layout_width="92dp"
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="@string/servicios_subtitulo"
-                    android:textColor="@color/verde_te"
+                    android:textColor="@color/texto_cabecera_sub"
                     android:textSize="14sp" />
             </LinearLayout>
         </FrameLayout>

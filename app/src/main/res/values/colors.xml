@@ -7,7 +7,8 @@
     <color name="verde_nyanza">#E4FDE1</color>  <!--  fondo de pantalla-->
     <color name="verde_honeydew">#EFFDEE</color>
 
-    <!-- Acentos pastel: cada uno tiene un fondo suave y un color fuerte para texto/íconos -->
+    <!-- Acentos pastel: cada uno tiene un fondo suave y un color fuerte para texto/íconos.
+         En modo oscuro se invierten: fondo gris oscuro y color pastel claro. -->
     <color name="durazno_fondo">#FFE3CC</color>       <!-- consulta, mis mascotas, edad -->
     <color name="durazno">#C2602A</color>
     <color name="mantequilla_fondo">#FFF3C4</color>   <!-- vacunación, pendiente, agendar -->
@@ -20,25 +21,23 @@
     <color name="lavanda">#6A4FC7</color>    <!--  fondo alternativo suave-->
 
 
-    <!-- Paleta de la veterinaria: verde azulado (salud) + naranja cálido (acentos) -->
-    <color name="vet_primary">#00796B</color>
-    <color name="vet_on_primary">#FFFFFF</color>
-    <color name="vet_primary_container">#B2DFDB</color>
-    <color name="vet_on_primary_container">#00201C</color>
-    <color name="vet_secondary">#F57C00</color>
-    <color name="vet_on_secondary">#FFFFFF</color>
-    <color name="vet_secondary_container">#FFE0B2</color>
-    <color name="vet_on_secondary_container">#2E1500</color>
 
-    <!-- Versión para modo oscuro -->
-    <color name="vet_primary_dark">#80CBC4</color>
-    <color name="vet_on_primary_dark">#003731</color>
-    <color name="vet_primary_container_dark">#005048</color>
-    <color name="vet_on_primary_container_dark">#B2DFDB</color>
-    <color name="vet_secondary_dark">#FFB74D</color>
-    <color name="vet_on_secondary_dark">#4A2800</color>
-    <color name="vet_secondary_container_dark">#6A3C00</color>
-    <color name="vet_on_secondary_container_dark">#FFE0B2</color>
+    <!--
+        Colores "por función". Tienen otro valor en values-night/colors.xml (modo oscuro).
+        Los layouts usan estos y no los verdes directamente, así cambian solos de día a noche.
+    -->
+    <color name="verde_accion">#4F7942</color>          <!-- botones, chips elegidos, títulos -->
+    <color name="texto_sobre_accion">#FFFFFF</color>    <!-- texto/ícono encima de verde_accion -->
+    <color name="cabecera">#4F7942</color>              <!-- fondo de las cabeceras -->
+    <color name="cabecera_onda_atras">#90CF8E</color>   <!-- onda de atrás del login -->
+    <color name="texto_cabecera_sub">#C6EDC3</color>    <!-- subtítulos y pestañas sobre la cabecera -->
+    <color name="fondo_pantalla">#E4FDE1</color>
+    <color name="superficie">#FFFFFF</color>            <!-- tarjetas -->
+    <color name="superficie_alta">#F3F8F2</color>       <!-- diálogos, calendario -->
+    <color name="superficie_mas_alta">#E8F1E6</color>
+    <color name="fondo_suave">#C6EDC3</color>           <!-- círculo de fotos, bordes suaves, patitas -->
+    <color name="detalle_suave">#90CF8E</color>         <!-- almohadillas, gatitos de "vacío" -->
+    <color name="icono_sobre_acento">#FFFFFF</color>    <!-- íconos dentro de los cuadros de color del menú -->
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

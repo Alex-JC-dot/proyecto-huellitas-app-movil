@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Texto del chip: blanco si está elegido, verde olivo si no -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/white" android:state_checked="true" />
-    <item android:color="@color/verde_olivo" />
+    <item android:color="@color/texto_sobre_accion" android:state_checked="true" />
+    <item android:color="@color/verde_accion" />
 </selector>

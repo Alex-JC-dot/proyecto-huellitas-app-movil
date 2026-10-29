@@ -10,10 +10,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/superficie"
     app:cardCornerRadius="20dp"
     app:cardElevation="0dp"
-    app:strokeColor="@color/verde_te"
+    app:strokeColor="@color/fondo_suave"
     app:strokeWidth="1.5dp">
 
     <LinearLayout

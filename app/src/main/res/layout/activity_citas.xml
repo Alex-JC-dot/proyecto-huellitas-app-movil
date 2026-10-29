@@ -33,7 +33,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/verde_olivo">
+            android:background="@color/cabecera">
 
             <ImageView
                 android:layout_width="130dp"
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="@string/citas_subtitulo"
-                    android:textColor="@color/verde_te"
+                    android:textColor="@color/texto_cabecera_sub"
                     android:textSize="14sp" />
             </LinearLayout>
         </FrameLayout>
@@ -80,12 +80,12 @@
             android:id="@+id/tabsCitas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/verde_olivo"
+            android:background="@color/cabecera"
             app:tabIndicatorColor="@color/white"
             app:tabIndicatorFullWidth="false"
             app:tabIndicatorHeight="3dp"
             app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/verde_te">
+            app:tabTextColor="@color/texto_cabecera_sub">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -129,7 +129,7 @@
                 android:layout_height="110dp"
                 android:importantForAccessibility="no"
                 app:srcCompat="@drawable/deco_gato_jugando"
-                app:tint="@color/verde_pistacho" />
+                app:tint="@color/detalle_suave" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -157,8 +157,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="20dp"
         android:text="@string/citas_boton_agendar"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/verde_olivo"
+        android:textColor="@color/texto_sobre_accion"
+        app:backgroundTint="@color/verde_accion"
         app:icon="@drawable/ic_agregar"
-        app:iconTint="@color/white" />
+        app:iconTint="@color/texto_sobre_accion" />
 </FrameLayout>
