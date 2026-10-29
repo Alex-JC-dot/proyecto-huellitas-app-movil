@@ -84,7 +84,7 @@ class DetalleMascotaActivity : AppCompatActivity() {
     }
 
     private fun mostrarDatos(m: Mascota) {
-        FotoUtils.mostrar(findViewById(R.id.ivFoto), findViewById(R.id.tvEmoji), m)
+        FotoUtils.mostrar(findViewById(R.id.ivFoto), findViewById(R.id.ivSilueta), m)
 
         findViewById<TextView>(R.id.tvNombre).text = m.nombre
         findViewById<TextView>(R.id.tvSexoSimbolo).text = MascotaUtils.simboloSexo(m.sexo)

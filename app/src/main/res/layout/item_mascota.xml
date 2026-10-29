@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     Tarjeta de UNA mascota en la lista (la usa MascotaAdapter).
-    Foto en círculo (o emoji si no tiene foto), nombre, raza · edad y sexo.
+    Foto en círculo (o silueta de su especie si no tiene foto), nombre, raza · edad y sexo.
 -->
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,7 +22,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Foto circular con el emoji encima (el emoji se ve solo si no hay foto) -->
+        <!-- Foto circular con la silueta encima (la silueta se ve solo si no hay foto) -->
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="100dp">
@@ -36,13 +36,15 @@
                 android:scaleType="centerCrop"
                 app:shapeAppearanceOverlay="@style/FormaCirculo" />
 
-            <TextView
-                android:id="@+id/tvEmoji"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <!-- Silueta (perro, gato o huella): se ve solo si no hay foto -->
+            <ImageView
+                android:id="@+id/ivSilueta"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:layout_gravity="center"
-                android:textSize="44sp"
-                tools:text="🐶" />
+                android:importantForAccessibility="no"
+                app:tint="?attr/colorPrimary"
+                tools:src="@drawable/silueta_perro" />
         </FrameLayout>
 
         <LinearLayout

@@ -1,5 +1,7 @@
 package com.AlexYChristian.ProyectoSis145.util
 
+import androidx.annotation.DrawableRes
+import com.AlexYChristian.ProyectoSis145.R
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -23,7 +25,15 @@ object MascotaUtils {
     private val formatoBD = SimpleDateFormat("yyyy-MM-dd", Locale.US)
     private val formatoVista = SimpleDateFormat("dd/MM/yyyy", Locale.US)
 
-    /** Emoji que se muestra cuando la mascota no tiene foto. */
+    /** Imagen que se muestra cuando la mascota no tiene foto. */
+    @DrawableRes
+    fun silueta(especie: String): Int = when (especie) {
+        ESPECIE_PERRO -> R.drawable.silueta_perro
+        ESPECIE_GATO -> R.drawable.silueta_gato
+        else -> R.drawable.ic_huella   // aves y otras especies
+    }
+
+    /** Emoji de la especie (se usa en textos, por ejemplo "🐶 Perro"). */
     fun emoji(especie: String): String = when (especie) {
         ESPECIE_PERRO -> "🐶"
         ESPECIE_GATO -> "🐱"

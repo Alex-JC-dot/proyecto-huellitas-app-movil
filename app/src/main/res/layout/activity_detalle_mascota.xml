@@ -3,7 +3,7 @@
     Detalle de mascota
     ScrollView
      └─ LinearLayout
-         ├─ FrameLayout: foto grande (o emoji si no tiene foto) sobre verde olivo
+         ├─ FrameLayout: foto grande (o silueta si no tiene foto) sobre verde olivo
          └─ Tarjeta: nombre + sexo, datos tipo píldora, información, vacunas y botones
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -35,13 +35,15 @@
                 android:contentDescription="@string/registrar_mascota_foto_descripcion"
                 android:scaleType="centerCrop" />
 
-            <TextView
-                android:id="@+id/tvEmoji"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <!-- Silueta blanca: se ve solo si la mascota no tiene foto -->
+            <ImageView
+                android:id="@+id/ivSilueta"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:layout_gravity="center"
-                android:textSize="110sp"
-                tools:text="🐶" />
+                android:importantForAccessibility="no"
+                app:tint="@color/white"
+                tools:src="@drawable/silueta_perro" />
         </FrameLayout>
 
         <!-- ===== Tarjeta con la ficha: sube 40dp sobre la foto ===== -->

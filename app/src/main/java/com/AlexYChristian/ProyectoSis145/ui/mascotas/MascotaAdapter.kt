@@ -41,7 +41,7 @@ class MascotaAdapter(
      */
     class MascotaViewHolder(vista: View) : RecyclerView.ViewHolder(vista) {
         val ivFoto: ImageView = vista.findViewById(R.id.ivFoto)
-        val tvEmoji: TextView = vista.findViewById(R.id.tvEmoji)
+        val ivSilueta: ImageView = vista.findViewById(R.id.ivSilueta)
         val tvNombre: TextView = vista.findViewById(R.id.tvNombre)
         val tvSexo: TextView = vista.findViewById(R.id.tvSexo)
         val tvDetalle: TextView = vista.findViewById(R.id.tvDetalle)
@@ -59,7 +59,7 @@ class MascotaAdapter(
         holder.tvNombre.text = mascota.nombre
         holder.tvSexo.text = MascotaUtils.simboloSexo(mascota.sexo)
         holder.tvDetalle.text = "${mascota.raza} · ${MascotaUtils.calcularEdad(mascota.fechaNacimiento)}"
-        FotoUtils.mostrar(holder.ivFoto, holder.tvEmoji, mascota)
+        FotoUtils.mostrar(holder.ivFoto, holder.ivSilueta, mascota)
 
         holder.itemView.setOnClickListener { alTocarMascota(mascota) }
     }

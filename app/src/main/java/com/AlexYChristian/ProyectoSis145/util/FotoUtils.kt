@@ -8,7 +8,6 @@ import android.media.ExifInterface
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import com.AlexYChristian.ProyectoSis145.data.entity.Mascota
 import java.io.File
 import java.io.FileOutputStream
@@ -87,18 +86,19 @@ object FotoUtils {
     }
 
     /**
-     * Muestra la foto de la mascota en el ImageView.
-     * Si no tiene foto, oculta la imagen y muestra el emoji de su especie.
+     * Muestra la foto de la mascota en ivFoto.
+     * Si no tiene foto, la oculta y muestra en ivSilueta la silueta de su especie
+     * (perro, gato o una huella para las demás). El color de la silueta lo da el XML (app:tint).
      */
-    fun mostrar(ivFoto: ImageView, tvEmoji: TextView, mascota: Mascota) {
+    fun mostrar(ivFoto: ImageView, ivSilueta: ImageView, mascota: Mascota) {
         val foto = cargarFoto(mascota.foto)
         if (foto != null) {
             ivFoto.setImageBitmap(foto)
-            tvEmoji.visibility = View.GONE
+            ivSilueta.visibility = View.GONE
         } else {
             ivFoto.setImageDrawable(null)
-            tvEmoji.text = MascotaUtils.emoji(mascota.especie)
-            tvEmoji.visibility = View.VISIBLE
+            ivSilueta.setImageResource(MascotaUtils.silueta(mascota.especie))
+            ivSilueta.visibility = View.VISIBLE
         }
     }
 }
