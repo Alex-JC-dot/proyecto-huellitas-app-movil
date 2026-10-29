@@ -161,8 +161,8 @@ class AgendarCitaActivity : AppCompatActivity() {
             tarjeta.setStrokeColor(ColorStateList.valueOf(ContextCompat.getColor(this, estilo.color)))
             tarjeta.strokeWidth = (2 * resources.displayMetrics.density).toInt()
         } else {
-            tarjeta.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white))
-            tarjeta.setStrokeColor(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.verde_te)))
+            tarjeta.setCardBackgroundColor(ContextCompat.getColor(this, R.color.superficie))
+            tarjeta.setStrokeColor(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.fondo_suave)))
             tarjeta.strokeWidth = (1.5f * resources.displayMetrics.density).toInt()
         }
     }

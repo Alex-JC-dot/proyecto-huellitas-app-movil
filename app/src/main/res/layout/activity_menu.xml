@@ -27,7 +27,7 @@
             android:id="@+id/cabecera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/verde_olivo"
+            android:background="@color/cabecera"
             android:paddingBottom="56dp">
 
             <LinearLayout
@@ -161,7 +161,7 @@
                                     android:layout_gravity="center"
                                     android:importantForAccessibility="no"
                                     app:srcCompat="@drawable/ic_huella"
-                                    app:tint="@color/white" />
+                                    app:tint="@color/icono_sobre_acento" />
                             </FrameLayout>
 
                             <TextView
@@ -214,7 +214,7 @@
                                     android:layout_gravity="center"
                                     android:importantForAccessibility="no"
                                     app:srcCompat="@drawable/ic_calendario"
-                                    app:tint="@color/white" />
+                                    app:tint="@color/icono_sobre_acento" />
                             </FrameLayout>
 
                             <TextView
@@ -275,7 +275,7 @@
                                     android:layout_gravity="center"
                                     android:importantForAccessibility="no"
                                     app:srcCompat="@drawable/ic_agregar"
-                                    app:tint="@color/white" />
+                                    app:tint="@color/icono_sobre_acento" />
                             </FrameLayout>
 
                             <TextView
@@ -328,7 +328,7 @@
                                     android:layout_gravity="center"
                                     android:importantForAccessibility="no"
                                     app:srcCompat="@drawable/ic_servicio_consulta"
-                                    app:tint="@color/white" />
+                                    app:tint="@color/icono_sobre_acento" />
                             </FrameLayout>
 
                             <TextView

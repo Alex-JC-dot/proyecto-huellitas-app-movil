@@ -11,7 +11,7 @@
         <item name="checkedIconVisible">false</item>
         <item name="chipCornerRadius">20dp</item>
         <item name="chipBackgroundColor">@color/chip_fondo</item>
-        <item name="chipStrokeColor">@color/verde_pistacho</item>
+        <item name="chipStrokeColor">@color/detalle_suave</item>
         <item name="android:textColor">@color/chip_texto</item>
     </style>
 </resources>

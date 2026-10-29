@@ -31,7 +31,7 @@
                 android:id="@+id/ivFoto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/verde_te"
+                android:background="@color/fondo_suave"
                 android:contentDescription="@string/registrar_mascota_foto_descripcion"
                 android:scaleType="centerCrop"
                 app:shapeAppearanceOverlay="@style/FormaCirculo" />
