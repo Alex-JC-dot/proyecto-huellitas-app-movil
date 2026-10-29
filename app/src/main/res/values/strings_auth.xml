@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos de Login y Registro (Alex). Archivo separado para no chocar con strings.xml -->
+<resources>
+    <!-- Login -->
+    <string name="login_bienvenida">Bienvenido</string>
+    <string name="login_subtitulo">Inicia sesión para cuidar a tus mascotas</string>
+    <string name="login_huella_descripcion">Huella de mascota</string>
+    <string name="campo_email">Email</string>
+    <string name="campo_password">Contraseña</string>
+    <string name="hint_email">ejemplo@correo.com</string>
+    <string name="hint_password">Tu contraseña</string>
+    <string name="login_recordarme">Recordarme en este dispositivo</string>
+    <string name="login_boton_ingresar">Ingresar</string>
+    <string name="login_sin_cuenta">¿No tienes cuenta?</string>
+    <string name="login_ir_registro">Regístrate</string>
+
+    <!-- Mensajes de error -->
+    <string name="error_email_vacio">Ingresa tu email</string>
+    <string name="error_email_invalido">El email no es válido</string>
+    <string name="error_password_vacia">Ingresa tu contraseña</string>
+    <string name="error_credenciales">Email o contraseña incorrectos</string>
+
+    <!-- Errores del registro -->
+    <string name="error_nombre_vacio">Ingresa tu nombre</string>
+    <string name="error_telefono_invalido">Ingresa un teléfono válido</string>
+    <string name="error_password_corta">Mínimo 6 caracteres</string>
+    <string name="error_passwords_no_coinciden">Las contraseñas no coinciden</string>
+    <string name="error_email_existente">Este email ya está registrado</string>
+
+    <!-- Mensaje de éxito -->
+    <string name="registro_exito">¡Cuenta creada! Ya puedes iniciar sesión</string>
+
+    <!-- Registro -->
+    <string name="registro_titulo">Crear cuenta</string>
+    <string name="registro_subtitulo">Regístrate para cuidar a tus mascotas</string>
+    <string name="registro_volver">Volver</string>
+
+    <!-- Etiquetas de los campos nuevos -->
+    <string name="campo_nombre">Nombre completo</string>
+    <string name="campo_telefono">Teléfono</string>
+    <string name="campo_confirmar_password">Confirmar contraseña</string>
+
+    <!-- Ejemplos dentro de los campos (hints) -->
+    <string name="hint_nombre">Juan Pérez</string>
+    <string name="hint_telefono">70012345</string>
+    <string name="hint_password_nueva">Mínimo 6 caracteres</string>
+    <string name="hint_confirmar_password">Repite tu contraseña</string>
+
+    <string name="registro_boton_crear">Crear cuenta</string>
+    <string name="registro_con_cuenta">¿Ya tienes cuenta?</string>
+    <string name="registro_ir_login">Inicia sesión</string>
+
+</resources>
