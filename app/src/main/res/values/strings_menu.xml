@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos del Menú principal (Alex) -->
+<resources>
+    <string name="menu_marca">Huellitas</string>
+    <string name="menu_marca_lema">Veterinaria</string>
+    <!-- %1$s se reemplaza por el nombre del usuario -->
+    <string name="menu_saludo">¡Hola, %1$s! 👋</string>
+    <string name="menu_pregunta">¿Qué quieres hacer hoy?</string>
+
+    <string name="menu_seccion_mascotas">Mis mascotas</string>
+    <string name="menu_ver_mascotas">Ver y registrar mis mascotas</string>
+
+    <string name="menu_seccion_citas">Citas</string>
+    <string name="menu_mis_citas">Mis citas</string>
+    <string name="menu_agendar_cita">Agendar</string>
+
+    <string name="menu_seccion_veterinaria">Veterinaria</string>
+    <string name="menu_servicios">Servicios y precios</string>
+
+    <string name="menu_cerrar_sesion">Cerrar sesión</string>
+</resources>

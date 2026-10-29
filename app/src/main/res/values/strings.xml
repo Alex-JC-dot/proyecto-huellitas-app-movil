@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Veterinaria</string>
+    <string name="app_name">Huellitas</string>
 
     <!-- Títulos de pantallas -->
     <string name="titulo_login">Iniciar sesión</string>
