@@ -8,15 +8,15 @@
     <string name="menu_saludo">¡Hola, %1$s! 👋</string>
     <string name="menu_pregunta">¿Qué quieres hacer hoy?</string>
 
-    <string name="menu_seccion_mascotas">Mis mascotas</string>
-    <string name="menu_ver_mascotas">Ver y registrar mis mascotas</string>
-
-    <string name="menu_seccion_citas">Citas</string>
+    <!-- Accesos (cuadros de colores) -->
+    <string name="menu_mis_mascotas">Mis mascotas</string>
+    <string name="menu_mis_mascotas_sub">Fichas y fotos</string>
     <string name="menu_mis_citas">Mis citas</string>
+    <string name="menu_mis_citas_sub">Próximas y pasadas</string>
     <string name="menu_agendar_cita">Agendar</string>
-
-    <string name="menu_seccion_veterinaria">Veterinaria</string>
-    <string name="menu_servicios">Servicios y precios</string>
+    <string name="menu_agendar_cita_sub">Nueva cita</string>
+    <string name="menu_servicios">Servicios</string>
+    <string name="menu_servicios_sub">Precios</string>
 
     <string name="menu_cerrar_sesion">Cerrar sesión</string>
 </resources>

@@ -68,17 +68,17 @@ class MenuActivity : AppCompatActivity() {
 
         mostrarSaludo()
 
-        // Navegación: cada botón abre su pantalla
-        findViewById<MaterialButton>(R.id.btnMisMascotas).setOnClickListener {
+        // Navegación: cada cuadro de color abre su pantalla
+        findViewById<View>(R.id.btnMisMascotas).setOnClickListener {
             startActivity(Intent(this, MascotasActivity::class.java))
         }
-        findViewById<MaterialButton>(R.id.btnMisCitas).setOnClickListener {
+        findViewById<View>(R.id.btnMisCitas).setOnClickListener {
             startActivity(Intent(this, CitasActivity::class.java))
         }
-        findViewById<MaterialButton>(R.id.btnAgendarCita).setOnClickListener {
+        findViewById<View>(R.id.btnAgendarCita).setOnClickListener {
             startActivity(Intent(this, AgendarCitaActivity::class.java))
         }
-        findViewById<MaterialButton>(R.id.btnServicios).setOnClickListener {
+        findViewById<View>(R.id.btnServicios).setOnClickListener {
             startActivity(Intent(this, ServiciosActivity::class.java))
         }
         findViewById<MaterialButton>(R.id.btnCerrarSesion).setOnClickListener {

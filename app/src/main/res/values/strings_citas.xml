@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos de Agendar cita, Mis citas y Servicios -->
+<resources>
+    <!-- Agendar cita -->
+    <string name="agendar_titulo">Agendar cita</string>
+    <string name="agendar_subtitulo">Elige mascota, servicio, día y hora</string>
+    <string name="agendar_para_quien">¿Para quién es la cita?</string>
+    <string name="agendar_servicio">Servicio</string>
+    <string name="agendar_fecha">Fecha</string>
+    <string name="agendar_hora">Hora</string>
+    <string name="agendar_hint_fecha">Elegir día</string>
+    <string name="agendar_hint_hora">Elegir hora</string>
+    <string name="agendar_notas">Notas (opcional)</string>
+    <string name="agendar_hint_notas">Ej: está decaído, no come bien…</string>
+    <string name="agendar_boton">Confirmar cita</string>
+    <string name="agendar_sin_mascotas">Primero registra una mascota para poder agendarle una cita.</string>
+    <string name="agendar_ir_registrar">Registrar mascota</string>
+    <string name="agendar_exito">¡Cita agendada para %1$s el %2$s a las %3$s! 📅</string>
+    <string name="error_cita_mascota">Elige una mascota</string>
+    <string name="error_cita_servicio">Elige un servicio</string>
+    <string name="error_cita_fecha">Elige el día</string>
+    <string name="error_cita_hora">Elige la hora</string>
+    <string name="error_cita_hora_pasada">Esa hora ya pasó</string>
+
+    <!-- Mis citas -->
+    <string name="citas_titulo">Mis citas</string>
+    <string name="citas_subtitulo">Toca una cita pendiente para gestionarla</string>
+    <string name="citas_tab_proximas">Próximas</string>
+    <string name="citas_tab_pasadas">Pasadas</string>
+    <string name="citas_tab_todas">Todas</string>
+    <string name="citas_vacio_titulo">No hay citas aquí 📅</string>
+    <string name="citas_vacio_texto">Agenda una cita para consulta, vacunas, baño y más.</string>
+    <string name="citas_boton_agendar">Agendar</string>
+    <string name="citas_hoy">Hoy</string>
+    <string name="citas_manana">Mañana</string>
+    <string name="citas_faltan">Faltan %1$d días</string>
+    <string name="citas_completar">✔ Marcar como completada</string>
+    <string name="citas_cancelar">✖ Cancelar cita</string>
+    <string name="citas_cerrar">Cerrar</string>
+    <string name="citas_actualizada">Cita actualizada</string>
+
+    <!-- Servicios -->
+    <string name="servicios_titulo">Servicios</string>
+    <string name="servicios_subtitulo">Precios en bolivianos (Bs)</string>
+    <string name="servicios_boton_agendar">Agendar una cita</string>
+</resources>
