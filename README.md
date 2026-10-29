@@ -1,4 +1,4 @@
-# Proyecto  App Móvil
+# Proyecto  App Móvil HUELLLITAS 🐾
 
 Prototipo de aplicación Android desarrollado en **Kotlin** con interfaces en **XML (Views)**. Es un proyecto colaborativo que aplica buenas prácticas de desarrollo móvil, control de versiones con Git y trabajo en equipo mediante ramas y Pull Requests.
 
