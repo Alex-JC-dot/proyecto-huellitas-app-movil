@@ -3,7 +3,7 @@
     Menú principal (Huellitas)
     ScrollView
      └─ LinearLayout (vertical)
-         ├─ FrameLayout: cabecera verde con huellitas, marca y saludo
+         ├─ FrameLayout: cabecera verde con la marca, la ilustración y el saludo
          └─ MaterialCardView: tarjeta blanca que sube sobre la cabecera
              └─ secciones con botones hacia cada pantalla + cerrar sesión
 -->
@@ -29,79 +29,6 @@
             android:layout_height="wrap_content"
             android:background="@color/verde_pistacho"
             android:paddingBottom="96dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="top|start"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="36dp"
-                android:alpha="0.3"
-                android:importantForAccessibility="no"
-                android:rotation="-25"
-                app:srcCompat="@drawable/ic_huella"
-                app:tint="@color/white" />
-
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_gravity="top|start"
-                android:layout_marginStart="110dp"
-                android:layout_marginTop="22dp"
-                android:alpha="0.3"
-                android:importantForAccessibility="no"
-                android:rotation="20"
-                app:srcCompat="@drawable/ic_huella"
-                app:tint="@color/white" />
-
-            <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_gravity="top|end"
-                android:layout_marginEnd="120dp"
-                android:layout_marginTop="40dp"
-                android:alpha="0.3"
-                android:importantForAccessibility="no"
-                android:rotation="-15"
-                app:srcCompat="@drawable/ic_huella"
-                app:tint="@color/white" />
-
-            <ImageView
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_gravity="top|end"
-                android:layout_marginEnd="24dp"
-                android:layout_marginTop="96dp"
-                android:alpha="0.3"
-                android:importantForAccessibility="no"
-                android:rotation="30"
-                app:srcCompat="@drawable/ic_huella"
-                app:tint="@color/white" />
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="top|start"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="120dp"
-                android:alpha="0.3"
-                android:importantForAccessibility="no"
-                android:rotation="10"
-                app:srcCompat="@drawable/ic_huella"
-                app:tint="@color/white" />
-
-            <!-- Huella grande de fondo, a la derecha -->
-            <ImageView
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_gravity="bottom|end"
-                android:layout_marginEnd="-30dp"
-                android:layout_marginBottom="-70dp"
-                android:alpha="0.35"
-                android:importantForAccessibility="no"
-                android:rotation="-25"
-                app:srcCompat="@drawable/ic_huella"
-                app:tint="@color/white" />
 
             <LinearLayout
                 android:id="@+id/contenidoCabecera"
@@ -144,12 +71,24 @@
                         android:textSize="14sp" />
                 </LinearLayout>
 
+                <!-- Ilustración de animales: imagen negra con fondo transparente,
+                     se pinta de blanco con app:tint -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:layout_marginTop="16dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/menu_ilustracion_descripcion"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ilustracion_animales"
+                    app:tint="@color/white" />
+
                 <!-- Saludo: el nombre se pone desde Kotlin -->
                 <TextView
                     android:id="@+id/tvSaludo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="16dp"
                     android:textColor="@color/verde_olivo"
                     android:textSize="30sp"
                     android:textStyle="bold"

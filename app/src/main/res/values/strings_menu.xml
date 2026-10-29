@@ -3,6 +3,7 @@
 <resources>
     <string name="menu_marca">Huellitas</string>
     <string name="menu_marca_lema">Veterinaria</string>
+    <string name="menu_ilustracion_descripcion">Ilustración de mascotas: perros, gato y aves</string>
     <!-- %1$s se reemplaza por el nombre del usuario -->
     <string name="menu_saludo">¡Hola, %1$s! 👋</string>
     <string name="menu_pregunta">¿Qué quieres hacer hoy?</string>
