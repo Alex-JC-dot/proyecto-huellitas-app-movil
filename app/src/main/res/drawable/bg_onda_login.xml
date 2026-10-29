@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Cabecera verde con borde inferior ondulado (pantallas de Login y Registro) -->
+<!-- Cabecera verde olivo con borde inferior ondulado (pantallas de Login y Registro) -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="360dp"
     android:height="280dp"
@@ -7,10 +7,10 @@
     android:viewportHeight="280">
     <!-- Onda de fondo, más clara, para dar profundidad -->
     <path
-        android:fillColor="@color/verde_celadon"
+        android:fillColor="@color/verde_pistacho"
         android:pathData="M0,0 H360 V225 C310,275 250,200 180,235 C110,270 55,215 0,250 Z" />
     <!-- Onda principal -->
     <path
-        android:fillColor="@color/verde_pistacho"
+        android:fillColor="@color/verde_olivo"
         android:pathData="M0,0 H360 V200 C300,255 240,175 170,210 C100,245 50,195 0,225 Z" />
 </vector>
