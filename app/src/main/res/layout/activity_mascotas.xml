@@ -1,24 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    Mis mascotas
+    FrameLayout (raíz)
+     ├─ LinearLayout: cabecera verde + filtros + lista (o mensaje si está vacía)
+     └─ Botón flotante "Registrar" (abajo a la derecha)
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface"
+    android:background="?android:attr/colorBackground"
     tools:context=".ui.mascotas.MascotasActivity">
 
-    <!-- Pantalla en construcción. Responsable: Christian -->
-    <TextView
-        android:id="@+id/tvTitulo"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- ===== Cabecera ===== -->
+        <LinearLayout
+            android:id="@+id/contenidoCabecera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/verde_olivo"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mascotas_titulo"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/mascotas_subtitulo"
+                android:textColor="@color/verde_te"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- ===== Filtros por especie (se pueden deslizar a los lados) ===== -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipsFiltro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="4dp"
+                app:checkedChip="@id/chipTodas"
+                app:selectionRequired="true"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTodas"
+                    style="@style/ChipHuellitas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filtro_todas" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPerros"
+                    style="@style/ChipHuellitas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filtro_perros" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipGatos"
+                    style="@style/ChipHuellitas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filtro_gatos" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAves"
+                    style="@style/ChipHuellitas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filtro_aves" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipOtros"
+                    style="@style/ChipHuellitas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filtro_otros" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <!-- ===== Lista en 2 columnas ===== -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMascotas"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingStart="10dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="96dp"
+            tools:itemCount="4"
+            tools:listitem="@layout/item_mascota" />
+
+        <!-- ===== Mensaje cuando no hay mascotas (oculto al inicio) ===== -->
+        <LinearLayout
+            android:id="@+id/layoutVacio"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="32dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:alpha="0.5"
+                android:importantForAccessibility="no"
+                app:srcCompat="@drawable/ic_huella"
+                app:tint="@color/verde_pistacho" />
+
+            <TextView
+                android:id="@+id/tvVacioTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/mascotas_vacio_titulo"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvVacioTexto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:text="@string/mascotas_vacio_texto"
+                android:textColor="@android:color/darker_gray" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ===== Botón flotante ===== -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabRegistrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/titulo_mascotas"
-        android:textAppearance="?attr/textAppearanceHeadlineSmall"
-        android:textColor="?attr/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:text="@string/mascotas_boton_registrar"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/verde_olivo"
+        app:icon="@drawable/ic_agregar"
+        app:iconTint="@color/white" />
+</FrameLayout>

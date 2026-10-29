@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Forma circular para ShapeableImageView (fotos de mascotas) -->
+    <style name="FormaCirculo">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- Chip de filtro / selección con los colores de Huellitas -->
+    <style name="ChipHuellitas" parent="Widget.Material3.Chip.Filter">
+        <item name="checkedIconVisible">false</item>
+        <item name="chipCornerRadius">20dp</item>
+        <item name="chipBackgroundColor">@color/chip_fondo</item>
+        <item name="chipStrokeColor">@color/verde_pistacho</item>
+        <item name="android:textColor">@color/chip_texto</item>
+    </style>
+</resources>
