@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos de Mis mascotas, Registrar mascota y Detalle -->
+<resources>
+    <!-- Mis mascotas -->
+    <string name="mascotas_titulo">Mis mascotas</string>
+    <string name="mascotas_subtitulo">Toca una mascota para ver su ficha</string>
+    <string name="filtro_todas">Todas</string>
+    <string name="filtro_perros">Perros</string>
+    <string name="filtro_gatos">Gatos</string>
+    <string name="filtro_aves">Aves</string>
+    <string name="filtro_otros">Otros</string>
+    <string name="mascotas_vacio_titulo">Aún no tienes mascotas 🐾</string>
+    <string name="mascotas_vacio_texto">Registra a tu primera mascota para llevar su ficha y agendar citas.</string>
+    <string name="mascotas_vacio_filtro">No hay mascotas de este tipo.</string>
+    <string name="mascotas_boton_registrar">Registrar</string>
+
+    <!-- Registrar mascota -->
+    <string name="registrar_mascota_titulo">Nueva mascota</string>
+    <string name="registrar_mascota_agregar_foto">Agregar foto</string>
+    <string name="registrar_mascota_cambiar_foto">Cambiar foto</string>
+    <string name="registrar_mascota_foto_descripcion">Foto de la mascota</string>
+    <string name="campo_mascota_nombre">Nombre</string>
+    <string name="hint_mascota_nombre">Ej: Firulais</string>
+    <string name="campo_mascota_especie">Especie</string>
+    <string name="campo_mascota_sexo">Sexo</string>
+    <string name="campo_mascota_raza">Raza</string>
+    <string name="hint_mascota_raza">Ej: Mestizo, Siamés…</string>
+    <string name="campo_mascota_nacimiento">Fecha de nacimiento</string>
+    <string name="hint_mascota_nacimiento">Toca para elegir</string>
+    <string name="campo_mascota_peso">Peso (kg)</string>
+    <string name="hint_mascota_peso">Ej: 12.5</string>
+    <string name="especie_perro">🐶 Perro</string>
+    <string name="especie_gato">🐱 Gato</string>
+    <string name="especie_ave">🐦 Ave</string>
+    <string name="especie_otro">🐰 Otro</string>
+    <string name="sexo_macho">♂ Macho</string>
+    <string name="sexo_hembra">♀ Hembra</string>
+    <string name="registrar_mascota_boton">Guardar mascota</string>
+    <string name="registrar_mascota_exito">¡%1$s ya está registrado! 🐾</string>
+    <string name="registrar_mascota_error_foto">No se pudo cargar la foto. Prueba con otra.</string>
+
+    <!-- Errores del formulario -->
+    <string name="error_mascota_nombre">Ingresa el nombre</string>
+    <string name="error_mascota_especie">Elige la especie</string>
+    <string name="error_mascota_sexo">Elige el sexo</string>
+    <string name="error_mascota_raza">Ingresa la raza (o "Mestizo")</string>
+    <string name="error_mascota_nacimiento">Elige la fecha de nacimiento</string>
+    <string name="error_mascota_peso">Ingresa un peso válido</string>
+
+    <!-- Detalle de mascota -->
+    <string name="detalle_info_titulo">Información</string>
+    <string name="detalle_especie">Especie</string>
+    <string name="detalle_sexo">Sexo</string>
+    <string name="detalle_nacimiento">Nacimiento</string>
+    <string name="detalle_peso">Peso</string>
+    <string name="detalle_vacunas_titulo">Vacunas</string>
+    <string name="detalle_sin_vacunas">Todavía no tiene vacunas registradas.</string>
+    <string name="detalle_vacuna_proxima">Próxima dosis: %1$s</string>
+    <string name="detalle_boton_agendar">Agendar cita</string>
+    <string name="detalle_boton_eliminar">Eliminar mascota</string>
+    <string name="detalle_eliminar_titulo">¿Eliminar a %1$s?</string>
+    <string name="detalle_eliminar_mensaje">Se borrarán también sus citas y vacunas. No se puede deshacer.</string>
+    <string name="detalle_eliminar_confirmar">Eliminar</string>
+    <string name="detalle_eliminar_cancelar">Cancelar</string>
+    <string name="detalle_eliminada">Mascota eliminada</string>
+</resources>

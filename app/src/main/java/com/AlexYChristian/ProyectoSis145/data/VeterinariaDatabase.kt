@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.AlexYChristian.ProyectoSis145.data.dao.CitaDao
 import com.AlexYChristian.ProyectoSis145.data.dao.MascotaDao
@@ -26,7 +27,7 @@ import com.AlexYChristian.ProyectoSis145.data.entity.Vacuna
  */
 @Database(
     entities = [Usuario::class, Mascota::class, Servicio::class, Cita::class, Vacuna::class],
-    version = 1,
+    version = 2,   // v2: se agregó la columna "foto" a mascotas
     exportSchema = false
 )
 abstract class VeterinariaDatabase : RoomDatabase() {
@@ -51,9 +52,20 @@ abstract class VeterinariaDatabase : RoomDatabase() {
                     VeterinariaDatabase::class.java,
                     NOMBRE_BD
                 )
+                    .addMigrations(MIGRACION_1_2)
                     .addCallback(precargarServicios)
                     .build()
                     .also { INSTANCIA = it }
+            }
+        }
+
+        /**
+         * Migración de la versión 1 a la 2: agrega la columna "foto" a mascotas.
+         * Así, quien ya tenía la app instalada NO pierde sus datos al actualizar.
+         */
+        private val MIGRACION_1_2 = object : Migration(1, 2) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE mascotas ADD COLUMN foto TEXT NOT NULL DEFAULT ''")
             }
         }
 

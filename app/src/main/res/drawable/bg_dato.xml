@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fondo de los datos tipo "píldora" del detalle (edad, raza, peso) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/verde_honeydew" />
+    <stroke
+        android:width="1.5dp"
+        android:color="@color/verde_pistacho" />
+    <corners android:radius="50dp" />
+</shape>
