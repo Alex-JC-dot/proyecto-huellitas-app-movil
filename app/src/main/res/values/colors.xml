@@ -5,7 +5,19 @@
     <color name="verde_celadon">#A7DCA5</color> <!--  boton secundario, adorno-->
     <color name="verde_te">#C6EDC3</color>  <!--  fondo de tarjetas suave-->
     <color name="verde_nyanza">#E4FDE1</color>  <!--  fondo de pantalla-->
-    <color name="verde_honeydew">#EFFDEE</color>    <!--  fondo alternativo suave-->
+    <color name="verde_honeydew">#EFFDEE</color>
+
+    <!-- Acentos pastel: cada uno tiene un fondo suave y un color fuerte para texto/íconos -->
+    <color name="durazno_fondo">#FFE3CC</color>       <!-- consulta, mis mascotas, edad -->
+    <color name="durazno">#C2602A</color>
+    <color name="mantequilla_fondo">#FFF3C4</color>   <!-- vacunación, pendiente, agendar -->
+    <color name="mantequilla">#9A7400</color>
+    <color name="rosa_fondo">#FFDDE3</color>          <!-- cirugía, cancelada, "faltan X días" -->
+    <color name="rosa">#B8405A</color>
+    <color name="celeste_fondo">#D8ECFF</color>       <!-- baño, mis citas, peso -->
+    <color name="celeste">#2F6FA8</color>
+    <color name="lavanda_fondo">#E9E2FF</color>       <!-- desparasitación, servicios, raza -->
+    <color name="lavanda">#6A4FC7</color>    <!--  fondo alternativo suave-->
 
 
     <!-- Paleta de la veterinaria: verde azulado (salud) + naranja cálido (acentos) -->

@@ -89,7 +89,7 @@
                         tools:text="♂" />
                 </LinearLayout>
 
-                <!-- Datos tipo píldora: edad, raza y peso -->
+                <!-- Datos tipo píldora, cada uno con su color: edad (durazno), raza (lavanda), peso (celeste) -->
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -106,12 +106,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
-                            android:background="@drawable/bg_dato"
+                            android:background="@drawable/bg_pildora"
+                            android:backgroundTint="@color/durazno_fondo"
                             android:paddingStart="14dp"
                             android:paddingTop="6dp"
                             android:paddingEnd="14dp"
                             android:paddingBottom="6dp"
-                            android:textColor="?attr/colorPrimary"
+                            android:textColor="@color/durazno"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
@@ -120,12 +121,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
-                            android:background="@drawable/bg_dato"
+                            android:background="@drawable/bg_pildora"
+                            android:backgroundTint="@color/lavanda_fondo"
                             android:paddingStart="14dp"
                             android:paddingTop="6dp"
                             android:paddingEnd="14dp"
                             android:paddingBottom="6dp"
-                            android:textColor="?attr/colorPrimary"
+                            android:textColor="@color/lavanda"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
@@ -134,12 +136,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
-                            android:background="@drawable/bg_dato"
+                            android:background="@drawable/bg_pildora"
+                            android:backgroundTint="@color/celeste_fondo"
                             android:paddingStart="14dp"
                             android:paddingTop="6dp"
                             android:paddingEnd="14dp"
                             android:paddingBottom="6dp"
-                            android:textColor="?attr/colorPrimary"
+                            android:textColor="@color/celeste"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 

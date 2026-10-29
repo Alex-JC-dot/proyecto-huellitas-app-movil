@@ -5,7 +5,7 @@
      └─ LinearLayout (vertical)
          ├─ FrameLayout: cabecera verde olivo con la marca y la ilustración grande
          └─ MaterialCardView: tarjeta blanca que sube sobre la cabecera
-             └─ saludo + secciones con botones hacia cada pantalla + cerrar sesión
+             └─ saludo + cuadrícula de accesos de colores + cerrar sesión
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -121,106 +121,235 @@
                     android:textColor="@android:color/darker_gray"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="@string/menu_seccion_mascotas"
-                    android:textColor="?attr/colorOnSurface"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                <!-- ===== Accesos: cuadrícula 2x2 de cuadros de colores ===== -->
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnMisMascotas"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:layout_marginTop="8dp"
-                    android:gravity="start|center_vertical"
-                    android:paddingStart="20dp"
-                    android:text="@string/menu_ver_mascotas"
-                    android:textColor="?attr/colorPrimary"
-                    android:textSize="15sp"
-                    app:cornerRadius="28dp"
-                    app:icon="@drawable/ic_huella"
-                    app:iconGravity="start"
-                    app:iconPadding="12dp"
-                    app:iconTint="?attr/colorPrimary"
-                    app:strokeColor="@color/verde_pistacho"
-                    app:strokeWidth="1.5dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/menu_seccion_citas"
-                    android:textColor="?attr/colorOnSurface"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <!-- Dos botones lado a lado: cada uno ocupa la mitad (layout_weight) -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
                     android:orientation="horizontal">
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnMisCitas"
-                        style="@style/Widget.Material3.Button.OutlinedButton"
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btnMisMascotas"
                         android:layout_width="0dp"
-                        android:layout_height="56dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginEnd="6dp"
-                        android:gravity="center"
-                        android:text="@string/menu_mis_citas"
-                        android:textColor="?attr/colorPrimary"
-                        android:textSize="15sp"
-                        app:cornerRadius="28dp"
-                        app:strokeColor="@color/verde_pistacho"
-                        app:strokeWidth="1.5dp" />
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@color/durazno_fondo"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnAgendarCita"
-                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <!-- Cuadro de color fuerte con el ícono en blanco -->
+                            <FrameLayout
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@drawable/bg_redondeado"
+                                android:backgroundTint="@color/durazno">
+
+                                <ImageView
+                                    android:layout_width="26dp"
+                                    android:layout_height="26dp"
+                                    android:layout_gravity="center"
+                                    android:importantForAccessibility="no"
+                                    app:srcCompat="@drawable/ic_huella"
+                                    app:tint="@color/white" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:text="@string/menu_mis_mascotas"
+                                android:textColor="@color/durazno"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/menu_mis_mascotas_sub"
+                                android:textColor="@color/durazno"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btnMisCitas"
                         android:layout_width="0dp"
-                        android:layout_height="56dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="6dp"
-                        android:gravity="center"
-                        android:text="@string/menu_agendar_cita"
-                        android:textColor="?attr/colorPrimary"
-                        android:textSize="15sp"
-                        app:cornerRadius="28dp"
-                        app:strokeColor="@color/verde_pistacho"
-                        app:strokeWidth="1.5dp" />
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@color/celeste_fondo"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <!-- Cuadro de color fuerte con el ícono en blanco -->
+                            <FrameLayout
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@drawable/bg_redondeado"
+                                android:backgroundTint="@color/celeste">
+
+                                <ImageView
+                                    android:layout_width="26dp"
+                                    android:layout_height="26dp"
+                                    android:layout_gravity="center"
+                                    android:importantForAccessibility="no"
+                                    app:srcCompat="@drawable/ic_calendario"
+                                    app:tint="@color/white" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:text="@string/menu_mis_citas"
+                                android:textColor="@color/celeste"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/menu_mis_citas_sub"
+                                android:textColor="@color/celeste"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/menu_seccion_veterinaria"
-                    android:textColor="?attr/colorOnSurface"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnServicios"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:layout_marginTop="8dp"
-                    android:gravity="start|center_vertical"
-                    android:paddingStart="20dp"
-                    android:text="@string/menu_servicios"
-                    android:textColor="?attr/colorPrimary"
-                    android:textSize="15sp"
-                    app:cornerRadius="28dp"
-                    app:strokeColor="@color/verde_pistacho"
-                    app:strokeWidth="1.5dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btnAgendarCita"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@color/mantequilla_fondo"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <!-- Cuadro de color fuerte con el ícono en blanco -->
+                            <FrameLayout
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@drawable/bg_redondeado"
+                                android:backgroundTint="@color/mantequilla">
+
+                                <ImageView
+                                    android:layout_width="26dp"
+                                    android:layout_height="26dp"
+                                    android:layout_gravity="center"
+                                    android:importantForAccessibility="no"
+                                    app:srcCompat="@drawable/ic_agregar"
+                                    app:tint="@color/white" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:text="@string/menu_agendar_cita"
+                                android:textColor="@color/mantequilla"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/menu_agendar_cita_sub"
+                                android:textColor="@color/mantequilla"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btnServicios"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@color/lavanda_fondo"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <!-- Cuadro de color fuerte con el ícono en blanco -->
+                            <FrameLayout
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@drawable/bg_redondeado"
+                                android:backgroundTint="@color/lavanda">
+
+                                <ImageView
+                                    android:layout_width="26dp"
+                                    android:layout_height="26dp"
+                                    android:layout_gravity="center"
+                                    android:importantForAccessibility="no"
+                                    app:srcCompat="@drawable/ic_servicio_consulta"
+                                    app:tint="@color/white" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:text="@string/menu_servicios"
+                                android:textColor="@color/lavanda"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/menu_servicios_sub"
+                                android:textColor="@color/lavanda"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
 
                 <!-- Botón principal: cerrar sesión -->
                 <com.google.android.material.button.MaterialButton
