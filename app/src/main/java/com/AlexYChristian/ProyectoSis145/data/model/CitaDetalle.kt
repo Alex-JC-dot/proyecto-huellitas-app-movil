@@ -1,9 +1,7 @@
 package com.AlexYChristian.ProyectoSis145.data.model
 
 /**
- * No es una tabla: es el resultado de unir (JOIN) citas + mascotas + servicios,
- * para mostrar en la lista "Mis citas" el nombre de la mascota y del servicio
- * sin hacer varias consultas.
+ * Resultado de unir (JOIN) citas + mascotas + servicios (+ veterinarioId).
  */
 data class CitaDetalle(
     val id: Int,
@@ -15,5 +13,6 @@ data class CitaDetalle(
     val mascotaNombre: String,
     val servicioId: Int,
     val servicioNombre: String,
-    val servicioPrecio: Double
+    val servicioPrecio: Double,
+    val veterinarioId: Int? = null
 )

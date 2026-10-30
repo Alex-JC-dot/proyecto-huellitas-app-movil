@@ -17,6 +17,9 @@
     <color name="fondo_suave">#2C2C2C</color>
     <color name="detalle_suave">#4A4A4A</color>
     <color name="icono_sobre_acento">#1E1E1E</color>
+    <color name="verde_oscuro">#A8D5A6</color>
+    <color name="texto_principal">#EDEDED</color>
+    <color name="texto_secundario">#B3B3B3</color>
 
     <!-- Acentos: fondo neutro oscuro + color pastel claro -->
     <color name="durazno_fondo">#2C2C2C</color>

@@ -39,6 +39,12 @@
     <color name="detalle_suave">#90CF8E</color>         <!-- almohadillas, gatitos de "vacío" -->
     <color name="icono_sobre_acento">#FFFFFF</color>    <!-- íconos dentro de los cuadros de color del menú -->
 
+    <!-- Usados por las pantallas de veterinario, administración y mapa -->
+    <color name="verde_oscuro">#4F7942</color>
+    <color name="texto_principal">#1A1C19</color>
+    <color name="texto_secundario">#5C635B</color>
+    <color name="blanco">#FFFFFF</color>        <!-- texto/ícono sobre la cabecera o botones -->
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

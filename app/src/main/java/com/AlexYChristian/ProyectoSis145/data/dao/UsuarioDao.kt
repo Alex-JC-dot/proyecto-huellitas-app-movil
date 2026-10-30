@@ -18,9 +18,13 @@ interface UsuarioDao {
     @Query("SELECT * FROM usuarios WHERE email = :email AND password = :password LIMIT 1")
     suspend fun login(email: String, password: String): Usuario?
 
-    /** Registro: revisa si el email ya está en uso antes de guardar. */
+    /** Revisa si el email ya está en uso antes de guardar. */
     @Query("SELECT COUNT(*) > 0 FROM usuarios WHERE email = :email")
     suspend fun existeEmail(email: String): Boolean
+
+    /** Obtener usuario por email. */
+    @Query("SELECT * FROM usuarios WHERE email = :email LIMIT 1")
+    suspend fun obtenerPorEmail(email: String): Usuario?
 
     /** Menú / Perfil: datos del usuario que inició sesión. */
     @Query("SELECT * FROM usuarios WHERE id = :id")
@@ -29,4 +33,12 @@ interface UsuarioDao {
     /** Perfil: guarda cambios en los datos del usuario. */
     @Update
     suspend fun actualizar(usuario: Usuario)
+
+    /** Lista de todos los Veterinarios registrados en el sistema. */
+    @Query("SELECT * FROM usuarios WHERE rol = 'VETERINARIO' ORDER BY nombre ASC")
+    suspend fun obtenerVeterinarios(): List<Usuario>
+
+    /** Detalle de un Veterinario por su id. */
+    @Query("SELECT * FROM usuarios WHERE id = :id AND rol = 'VETERINARIO' LIMIT 1")
+    suspend fun obtenerVeterinarioPorId(id: Int): Usuario?
 }

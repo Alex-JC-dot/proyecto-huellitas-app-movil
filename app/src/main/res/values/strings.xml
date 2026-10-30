@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Huellitas</string>
 
-    <!-- Títulos de pantallas -->
+    <!-- Títulos de pantallas principales -->
     <string name="titulo_login">Iniciar sesión</string>
     <string name="titulo_registro">Crear cuenta</string>
     <string name="titulo_menu">Menú principal</string>
@@ -11,4 +11,11 @@
     <string name="titulo_detalle_mascota">Detalle de mascota</string>
     <string name="titulo_agendar_cita">Agendar cita</string>
     <string name="titulo_citas">Mis citas</string>
+
+    <!-- Títulos del Ecosistema Multi-Rol y Maps -->
+    <string name="titulo_admin_vets">Panel de Administración</string>
+    <string name="titulo_registrar_vet">Registrar Veterinario</string>
+    <string name="titulo_vet_panel">Panel del Veterinario</string>
+    <string name="titulo_historial_medico">Historial Médico Pediátrico</string>
+    <string name="title_activity_maps">Consultorios Veterinarios</string>
 </resources>

@@ -17,19 +17,23 @@ interface CitaDao {
     @Delete
     suspend fun eliminar(cita: Cita)
 
-    /** Cambia el estado: Cita.ESTADO_PENDIENTE, ESTADO_COMPLETADA o ESTADO_CANCELADA. */
+    /** Cambia el estado de una cita. */
     @Query("UPDATE citas SET estado = :estado WHERE id = :citaId")
     suspend fun actualizarEstado(citaId: Int, estado: String)
 
+    /** Asigna un veterinario a una cita. */
+    @Query("UPDATE citas SET veterinarioId = :veterinarioId WHERE id = :citaId")
+    suspend fun asignarVeterinario(citaId: Int, veterinarioId: Int)
+
     /**
-     * Mis citas: todas las citas de las mascotas del usuario, con el nombre
-     * de la mascota y del servicio, ordenadas por fecha y hora.
+     * Mis citas (Cliente): citas de las mascotas del usuario con detalle de servicio y mascota.
      */
     @Query(
         """
         SELECT c.id, c.fecha, c.hora, c.estado, c.notas,
                m.id AS mascotaId, m.nombre AS mascotaNombre,
-               s.id AS servicioId, s.nombre AS servicioNombre, s.precio AS servicioPrecio
+               s.id AS servicioId, s.nombre AS servicioNombre, s.precio AS servicioPrecio,
+               c.veterinarioId
         FROM citas c
         INNER JOIN mascotas m ON m.id = c.mascotaId
         INNER JOIN servicios s ON s.id = c.servicioId
@@ -38,6 +42,25 @@ interface CitaDao {
         """
     )
     suspend fun obtenerPorUsuario(usuarioId: Int): List<CitaDetalle>
+
+    /**
+     * Panel del veterinario: sus citas asignadas + las que todavía no tienen veterinario
+     * (cualquier veterinario puede tomarlas; al confirmarlas quedan asignadas a él).
+     */
+    @Query(
+        """
+        SELECT c.id, c.fecha, c.hora, c.estado, c.notas,
+               m.id AS mascotaId, m.nombre AS mascotaNombre,
+               s.id AS servicioId, s.nombre AS servicioNombre, s.precio AS servicioPrecio,
+               c.veterinarioId
+        FROM citas c
+        INNER JOIN mascotas m ON m.id = c.mascotaId
+        INNER JOIN servicios s ON s.id = c.servicioId
+        WHERE c.veterinarioId = :veterinarioId OR c.veterinarioId IS NULL
+        ORDER BY c.fecha, c.hora
+        """
+    )
+    suspend fun obtenerPorVeterinario(veterinarioId: Int): List<CitaDetalle>
 
     /** Detalle de mascota: citas de una sola mascota. */
     @Query("SELECT * FROM citas WHERE mascotaId = :mascotaId ORDER BY fecha DESC, hora DESC")

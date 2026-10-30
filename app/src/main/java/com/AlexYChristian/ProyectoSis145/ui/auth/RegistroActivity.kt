@@ -16,6 +16,7 @@ import com.AlexYChristian.ProyectoSis145.data.entity.Usuario
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.AlexYChristian.ProyectoSis145.util.MakeWebhook
 import kotlinx.coroutines.launch
 
 /**
@@ -141,7 +142,10 @@ class RegistroActivity : AppCompatActivity() {
                 telefono = telefono,
                 password = contrasena
             )
-            usuarioDao.insertar(usuario)
+            val nuevoId = usuarioDao.insertar(usuario)
+
+            // Avisar a Make (por ejemplo, para mandar un correo de bienvenida)
+            MakeWebhook.usuarioRegistrado(usuario.copy(id = nuevoId.toInt()))
 
             // Avisar y volver al login
             Toast.makeText(this@RegistroActivity, R.string.registro_exito, Toast.LENGTH_LONG).show()
