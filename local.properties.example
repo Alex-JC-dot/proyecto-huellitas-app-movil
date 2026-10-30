@@ -5,3 +5,6 @@ MAKE_WEBHOOK_URL=https://hook.us2.make.com/tu-codigo-aqui
 
 # Clave del filtro "🔐 Solo la app Huellitas" del escenario de Make (tiene que ser la MISMA)
 MAKE_CLAVE_APP=pon-aqui-tu-clave
+
+# Clave de Google Maps SDK (Google Cloud Console → APIs y servicios → Credenciales)
+MAPS_API_KEY=pon-aqui-tu-clave-de-google-maps

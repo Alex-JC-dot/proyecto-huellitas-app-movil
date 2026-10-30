@@ -59,6 +59,13 @@ class DetalleMascotaActivity : AppCompatActivity() {
             return
         }
 
+        findViewById<MaterialButton>(R.id.btnVerHistorialMedico).setOnClickListener {
+            val intent = Intent(this, HistorialMedicoActivity::class.java).apply {
+                putExtra("MASCOTA_ID", mascotaId)
+                putExtra("MASCOTA_NOMBRE", mascota?.nombre ?: "Mascota")
+            }
+            startActivity(intent)
+        }
         findViewById<MaterialButton>(R.id.btnAgendarCita).setOnClickListener {
             val intent = Intent(this, AgendarCitaActivity::class.java)
             intent.putExtra(EXTRA_MASCOTA_ID, mascotaId)

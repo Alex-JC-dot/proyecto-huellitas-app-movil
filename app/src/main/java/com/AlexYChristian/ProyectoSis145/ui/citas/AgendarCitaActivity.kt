@@ -18,6 +18,7 @@ import com.AlexYChristian.ProyectoSis145.data.VeterinariaDatabase
 import com.AlexYChristian.ProyectoSis145.data.entity.Cita
 import com.AlexYChristian.ProyectoSis145.data.entity.Mascota
 import com.AlexYChristian.ProyectoSis145.data.entity.Servicio
+import com.AlexYChristian.ProyectoSis145.data.entity.Usuario
 import com.AlexYChristian.ProyectoSis145.ui.mascotas.DetalleMascotaActivity
 import com.AlexYChristian.ProyectoSis145.ui.mascotas.RegistrarMascotaActivity
 import com.AlexYChristian.ProyectoSis145.util.CitaUtils
@@ -42,15 +43,12 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-/**
- * Agendar cita.
- * 1. Carga las mascotas del usuario (chips) y los servicios (tarjetas de colores).
- *    Si viene desde la ficha de una mascota, esa mascota ya aparece elegida.
- * 2. Fecha con calendario (solo de hoy en adelante) y hora con reloj de 24 h.
- * 3. Valida y guarda con CitaDao.insertar(); la cita queda PENDIENTE.
- * 4. Al terminar abre "Mis citas".
- */
 class AgendarCitaActivity : AppCompatActivity() {
+
+    companion object {
+        /** Id del veterinario elegido en el mapa (opcional). */
+        const val EXTRA_VET_ID = "VET_ID"
+    }
 
     private lateinit var chipsMascotas: ChipGroup
     private lateinit var layoutServicios: LinearLayout
@@ -63,13 +61,11 @@ class AgendarCitaActivity : AppCompatActivity() {
     private lateinit var etNotas: TextInputEditText
     private lateinit var btnConfirmar: MaterialButton
 
-    // Qué mascota representa cada chip (id del chip → mascota)
     private val mascotaPorChip = mutableMapOf<Int, Mascota>()
-
-    // Selección del usuario
     private var servicioElegido: Servicio? = null
-    private var fechaBD: String = ""   // "yyyy-MM-dd"
-    private var hora: String = ""      // "HH:mm"
+    private var veterinarioElegidoId: Int? = null
+    private var fechaBD: String = ""
+    private var hora: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,6 +84,9 @@ class AgendarCitaActivity : AppCompatActivity() {
         etNotas = findViewById(R.id.etNotas)
         btnConfirmar = findViewById(R.id.btnConfirmar)
 
+        // Si viene desde el mapa de consultorios, la cita queda asignada a ese veterinario
+        veterinarioElegidoId = intent.getIntExtra(EXTRA_VET_ID, -1).takeIf { it != -1 }
+
         etFecha.setOnClickListener { mostrarCalendario() }
         etHora.setOnClickListener { mostrarReloj() }
         chipsMascotas.setOnCheckedStateChangeListener { _, _ -> tvErrorMascota.visibility = View.GONE }
@@ -97,7 +96,6 @@ class AgendarCitaActivity : AppCompatActivity() {
         }
     }
 
-    // Se cargan los datos en onResume: si fue a registrar una mascota, al volver ya aparece
     override fun onResume() {
         super.onResume()
         cargarDatos()
@@ -114,7 +112,6 @@ class AgendarCitaActivity : AppCompatActivity() {
         }
     }
 
-    /** Crea un chip por mascota. */
     private fun mostrarMascotas(mascotas: List<Mascota>, mascotaInicial: Int) {
         val elegidaAntes = mascotaPorChip[chipsMascotas.checkedChipId]?.id ?: mascotaInicial
         chipsMascotas.removeAllViews()
@@ -132,11 +129,9 @@ class AgendarCitaActivity : AppCompatActivity() {
             mascotaPorChip[chip.id] = mascota
             if (mascota.id == elegidaAntes) chip.isChecked = true
         }
-        // Si solo tiene una mascota, se elige sola
         if (mascotas.size == 1) (chipsMascotas.getChildAt(0) as Chip).isChecked = true
     }
 
-    /** Crea una tarjeta por servicio; al tocarla queda elegida (borde y fondo de su color). */
     private fun mostrarServicios(servicios: List<Servicio>) {
         val tarjetas = mutableListOf<Pair<MaterialCardView, Servicio>>()
         for (servicio in servicios) {
@@ -168,7 +163,6 @@ class AgendarCitaActivity : AppCompatActivity() {
         }
     }
 
-    /** Calendario: solo deja elegir de hoy en adelante. */
     private fun mostrarCalendario() {
         val hoyUtc = MaterialDatePicker.todayInUtcMilliseconds()
         val calendario = MaterialDatePicker.Builder.datePicker()
@@ -192,7 +186,6 @@ class AgendarCitaActivity : AppCompatActivity() {
         calendario.show(supportFragmentManager, "calendario")
     }
 
-    /** Reloj de 24 horas. */
     private fun mostrarReloj() {
         val reloj = MaterialTimePicker.Builder()
             .setTimeFormat(TimeFormat.CLOCK_24H)
@@ -235,7 +228,6 @@ class AgendarCitaActivity : AppCompatActivity() {
             tilHora.error = getString(R.string.error_cita_hora)
             return
         }
-        // Si es para hoy, la hora no puede haber pasado ("HH:mm" se compara bien como texto)
         if (fechaBD == CitaUtils.hoyBD() && hora <= CitaUtils.horaActual()) {
             tilHora.error = getString(R.string.error_cita_hora_pasada)
             return
@@ -248,7 +240,8 @@ class AgendarCitaActivity : AppCompatActivity() {
                 servicioId = servicio.id,
                 fecha = fechaBD,
                 hora = hora,
-                notas = etNotas.text.toString().trim()
+                notas = etNotas.text.toString().trim(),
+                veterinarioId = veterinarioElegidoId
             )
             val db = VeterinariaDatabase.getInstance(this@AgendarCitaActivity)
             val citaId = db.citaDao().insertar(cita)
@@ -265,7 +258,6 @@ class AgendarCitaActivity : AppCompatActivity() {
                 Toast.LENGTH_LONG
             ).show()
 
-            // Ir a "Mis citas" y cerrar esta pantalla
             startActivity(Intent(this@AgendarCitaActivity, CitasActivity::class.java))
             finish()
         }

@@ -81,6 +81,9 @@ class MenuActivity : AppCompatActivity() {
         findViewById<View>(R.id.btnServicios).setOnClickListener {
             startActivity(Intent(this, ServiciosActivity::class.java))
         }
+        findViewById<View>(R.id.btnConsultoriosMapa).setOnClickListener {
+            startActivity(Intent(this, com.AlexYChristian.ProyectoSis145.ui.maps.MapsActivity::class.java))
+        }
         findViewById<MaterialButton>(R.id.btnCerrarSesion).setOnClickListener {
             session.cerrarSesion()
             irAlLogin()

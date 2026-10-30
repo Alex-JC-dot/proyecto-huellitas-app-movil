@@ -71,7 +71,7 @@ class CitaAdapter(
         }
 
         // Cuenta regresiva: solo para citas pendientes que todavía no pasaron
-        val cuenta = if (cita.estado == Cita.ESTADO_PENDIENTE) CitaUtils.textoCuentaRegresiva(ctx, cita.fecha) else null
+        val cuenta = if (cita.estado == Cita.ESTADO_PENDIENTE || cita.estado == Cita.ESTADO_CONFIRMADA) CitaUtils.textoCuentaRegresiva(ctx, cita.fecha) else null
         if (cuenta != null) {
             holder.tvCuenta.text = cuenta
             holder.tvCuenta.visibility = View.VISIBLE

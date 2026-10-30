@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Necesario para enviar datos al webhook de Make -->
+    <!-- Necesario para enviar datos al webhook de Make y cargar el mapa -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Ubicación: para mostrar la distancia a los consultorios en el mapa -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +17,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoSis145">
-        <!-- Pantalla de inicio: decide si mostrar el Login o el Menú -->
+
+        <!-- Clave de Google Maps: viene de local.properties (MAPS_API_KEY), no se escribe aquí -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+        <!-- Pantalla de inicio: según la sesión y el ROL abre Login, Admin, Veterinario o Cliente -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -36,6 +44,20 @@
         <activity android:name=".ui.mascotas.DetalleMascotaActivity" android:exported="false" />
         <activity android:name=".ui.citas.AgendarCitaActivity" android:exported="false" />
         <activity android:name=".ui.citas.CitasActivity" android:exported="false" />
+        <activity android:name=".ui.mascotas.HistorialMedicoActivity" android:exported="false" />
+
+        <!-- Administración (Super Admin) -->
+        <activity android:name=".ui.admin.AdminVeterinariosActivity" android:exported="false" />
+        <activity android:name=".ui.admin.RegistrarVeterinarioActivity" android:exported="false" />
+
+        <!-- Panel del Veterinario -->
+        <activity android:name=".ui.vet.VetPanelActivity" android:exported="false" />
+
+        <!-- Mapa de consultorios (Google Maps) -->
+        <activity
+            android:name=".ui.maps.MapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps" />
     </application>
 
 </manifest>

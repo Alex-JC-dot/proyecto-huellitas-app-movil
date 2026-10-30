@@ -35,6 +35,10 @@ android {
             "\"${localProps.getProperty("MAKE_WEBHOOK_URL", "")}\""
         )
         // Clave que el filtro 🔐 del escenario de Make exige en cada envío (campo "clave_app")
+        // Clave de Google Maps: se toma de local.properties (MAPS_API_KEY=...) y se inserta
+        // en el AndroidManifest como ${MAPS_API_KEY}. Así la clave no queda en GitHub.
+        manifestPlaceholders["MAPS_API_KEY"] = localProps.getProperty("MAPS_API_KEY", "")
+
         buildConfigField(
             "String",
             "MAKE_CLAVE_APP",
@@ -72,6 +76,10 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    // Google Maps y ubicación (mapa de consultorios)
+    implementation(libs.playServices.maps)
+    implementation(libs.playServices.location)
 
     // OkHttp: cliente HTTP para enviar datos al webhook de Make
     implementation(libs.squareup.okhttp)

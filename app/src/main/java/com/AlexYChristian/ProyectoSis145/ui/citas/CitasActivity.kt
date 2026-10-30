@@ -91,7 +91,11 @@ class CitasActivity : AppCompatActivity() {
 
     /** Una cita es "próxima" si está pendiente y su fecha es hoy o después. */
     private fun esProxima(cita: CitaDetalle): Boolean =
-        cita.estado == Cita.ESTADO_PENDIENTE && cita.fecha >= CitaUtils.hoyBD()
+        estaActiva(cita) && cita.fecha >= CitaUtils.hoyBD()
+
+    /** Pendiente o confirmada por el veterinario: todavía se puede completar o cancelar. */
+    private fun estaActiva(cita: CitaDetalle) =
+        cita.estado == Cita.ESTADO_PENDIENTE || cita.estado == Cita.ESTADO_CONFIRMADA
 
     private fun aplicarPestana() {
         val lista = when (tabs.selectedTabPosition) {
@@ -106,7 +110,7 @@ class CitasActivity : AppCompatActivity() {
 
     /** Opciones de una cita pendiente: completarla o cancelarla. */
     private fun mostrarOpciones(cita: CitaDetalle) {
-        if (cita.estado != Cita.ESTADO_PENDIENTE) return
+        if (!estaActiva(cita)) return
         val opciones = arrayOf(getString(R.string.citas_completar), getString(R.string.citas_cancelar))
         MaterialAlertDialogBuilder(this)
             .setTitle("${cita.servicioNombre} · ${cita.mascotaNombre}")
