@@ -34,6 +34,12 @@ android {
             "MAKE_WEBHOOK_URL",
             "\"${localProps.getProperty("MAKE_WEBHOOK_URL", "")}\""
         )
+        // Clave que el filtro 🔐 del escenario de Make exige en cada envío (campo "clave_app")
+        buildConfigField(
+            "String",
+            "MAKE_CLAVE_APP",
+            "\"${localProps.getProperty("MAKE_CLAVE_APP", "")}\""
+        )
     }
 
     buildFeatures {

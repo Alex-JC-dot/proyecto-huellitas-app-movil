@@ -255,7 +255,9 @@ class AgendarCitaActivity : AppCompatActivity() {
 
             // Avisar a Make con todos los datos de la cita
             val usuario = db.usuarioDao().obtenerPorId(SessionManager(this@AgendarCitaActivity).obtenerUsuarioId())
-            MakeWebhook.citaAgendada(citaId, usuario, mascota, servicio, cita.fecha, cita.hora, cita.notas)
+            if (usuario != null) {
+                MakeWebhook.citaAgendada(usuario, mascota, servicio, cita.copy(id = citaId.toInt()))
+            }
 
             Toast.makeText(
                 this@AgendarCitaActivity,

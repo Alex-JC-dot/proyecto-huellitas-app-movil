@@ -16,6 +16,7 @@ import com.AlexYChristian.ProyectoSis145.data.SessionManager
 import com.AlexYChristian.ProyectoSis145.data.VeterinariaDatabase
 import com.AlexYChristian.ProyectoSis145.data.entity.Mascota
 import com.AlexYChristian.ProyectoSis145.util.FotoUtils
+import com.AlexYChristian.ProyectoSis145.util.MakeWebhook
 import com.AlexYChristian.ProyectoSis145.util.MascotaUtils
 import com.AlexYChristian.ProyectoSis145.util.configurarCabeceraVerde
 import com.google.android.material.button.MaterialButton
@@ -218,7 +219,13 @@ class RegistrarMascotaActivity : AppCompatActivity() {
                 peso = peso,
                 foto = rutaFoto
             )
-            VeterinariaDatabase.getInstance(this@RegistrarMascotaActivity).mascotaDao().insertar(mascota)
+            val db = VeterinariaDatabase.getInstance(this@RegistrarMascotaActivity)
+            val mascotaId = db.mascotaDao().insertar(mascota)
+
+            // Avisar a Make (Gemini arma una ficha de cuidados y la envía por correo)
+            db.usuarioDao().obtenerPorId(mascota.usuarioId)?.let { usuario ->
+                MakeWebhook.mascotaRegistrada(usuario, mascota.copy(id = mascotaId.toInt()))
+            }
 
             Toast.makeText(
                 this@RegistrarMascotaActivity,

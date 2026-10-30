@@ -23,6 +23,10 @@ object CitaUtils {
     /** Fecha de hoy como se guarda en la BD: "yyyy-MM-dd". */
     fun hoyBD(): String = formatoBD.format(Calendar.getInstance().time)
 
+    /** Fecha dentro de N meses desde hoy, como se guarda en la BD ("yyyy-MM-dd"). */
+    fun fechaEnMeses(meses: Int): String =
+        formatoBD.format(Calendar.getInstance().apply { add(Calendar.MONTH, meses) }.time)
+
     /** Hora actual: "HH:mm". */
     fun horaActual(): String = SimpleDateFormat("HH:mm", Locale.US).format(Calendar.getInstance().time)
 

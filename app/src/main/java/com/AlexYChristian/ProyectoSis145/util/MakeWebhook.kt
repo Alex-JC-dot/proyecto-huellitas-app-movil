@@ -2,9 +2,11 @@ package com.AlexYChristian.ProyectoSis145.util
 
 import android.util.Log
 import com.AlexYChristian.ProyectoSis145.BuildConfig
+import com.AlexYChristian.ProyectoSis145.data.entity.Cita
 import com.AlexYChristian.ProyectoSis145.data.entity.Mascota
 import com.AlexYChristian.ProyectoSis145.data.entity.Servicio
 import com.AlexYChristian.ProyectoSis145.data.entity.Usuario
+import com.AlexYChristian.ProyectoSis145.data.entity.Vacuna
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaType
@@ -20,53 +22,139 @@ import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 /**
- * Envía eventos de la app al webhook de Make (make.com) en formato JSON.
- * En Make, el escenario recibe el JSON y puede, por ejemplo, mandar un correo,
- * un WhatsApp o guardar la cita en Google Sheets.
+ * Envía los eventos de la app al escenario de Make "🐾 Huellitas · App → IA → Sheets → Gmail".
  *
- * - La URL se toma de BuildConfig.MAKE_WEBHOOK_URL (definida en local.properties).
- * - El envío es en segundo plano con enqueue(): no congela la pantalla y sigue
- *   aunque la pantalla se cierre.
- * - Si no hay internet o falla, la app sigue funcionando normal (solo se registra en Logcat).
+ * Formato (el que espera el escenario): todo en la raíz del JSON
+ *   {
+ *     "evento": "cita_agendada",
+ *     "clave_app": "...",            ← el filtro 🔐 de Make solo deja pasar esta clave
+ *     "enviado_en": "2026-10-30T10:15:00-04:00",
+ *     "app": { "nombre": "Huellitas", "version": "1.0", "plataforma": "Android" },
+ *     "usuario": {...}, "mascota": {...}, "servicio": {...}, "cita": {...}, "vacuna": {...}
+ *   }
  *
- * Eventos que se envían:
- *   "usuario_registrado"  → al crear una cuenta
- *   "cita_agendada"       → al confirmar una cita
- *   "cita_actualizada"    → al completar o cancelar una cita
+ * Eventos: usuario_registrado, mascota_registrada, cita_agendada, cita_estado, vacuna_registrada.
+ *
+ * - La URL y la clave se leen de local.properties (MAKE_WEBHOOK_URL y MAKE_CLAVE_APP),
+ *   que NO se sube a GitHub. Gradle las pasa a BuildConfig.
+ * - Se envía en segundo plano con OkHttp (enqueue): no congela la pantalla y no se corta
+ *   aunque la pantalla se cierre. Si no hay internet, la app sigue funcionando igual.
+ * - Nunca se envía la contraseña ni la ruta de la foto.
+ * - Para ver qué pasa: Logcat → filtrar por "MakeWebhook".
  */
 object MakeWebhook {
 
-    private const val TAG = "MakeWebhook"   // filtrar por esto en Logcat
+    private const val TAG = "MakeWebhook"
+    private const val VERSION_APP = "1.0"
     private val JSON = "application/json; charset=utf-8".toMediaType()
 
-    // Un solo cliente para toda la app (OkHttp recomienda reutilizarlo)
     private val cliente = OkHttpClient.Builder()
-        .connectTimeout(15, TimeUnit.SECONDS)
-        .readTimeout(15, TimeUnit.SECONDS)
+        .connectTimeout(10, TimeUnit.SECONDS)
+        .readTimeout(20, TimeUnit.SECONDS)
         .build()
 
-    /** Envía un evento con sus datos. No hace nada si no hay URL configurada. */
-    fun enviar(evento: String, datos: JSONObject) {
+    // ------------------------------------------------------------------ Eventos
+
+    fun usuarioRegistrado(usuario: Usuario) =
+        enviar("usuario_registrado", JSONObject().put("usuario", usuarioJson(usuario)))
+
+    fun mascotaRegistrada(usuario: Usuario, mascota: Mascota) =
+        enviar(
+            "mascota_registrada",
+            JSONObject()
+                .put("usuario", usuarioJson(usuario))
+                .put("mascota", mascotaJson(mascota))
+        )
+
+    fun citaAgendada(usuario: Usuario, mascota: Mascota, servicio: Servicio, cita: Cita) =
+        enviar("cita_agendada", datosCita(usuario, mascota, servicio, cita))
+
+    /** La cita pasó a COMPLETADA o CANCELADA (cita.estado ya tiene el estado nuevo). */
+    fun citaCambioEstado(usuario: Usuario, mascota: Mascota, servicio: Servicio, cita: Cita) =
+        enviar("cita_estado", datosCita(usuario, mascota, servicio, cita))
+
+    fun vacunaRegistrada(usuario: Usuario, mascota: Mascota, vacuna: Vacuna) =
+        enviar(
+            "vacuna_registrada",
+            JSONObject()
+                .put("usuario", usuarioJson(usuario))
+                .put("mascota", mascotaJson(mascota))
+                .put(
+                    "vacuna", JSONObject()
+                        .put("id", vacuna.id)
+                        .put("nombre", vacuna.nombre)
+                        .put("fechaAplicacion", vacuna.fechaAplicacion)
+                        .put("proximaDosis", vacuna.proximaDosis)
+                )
+        )
+
+    // ------------------------------------------------------------------ JSON
+
+    private fun usuarioJson(u: Usuario): JSONObject = JSONObject()
+        .put("id", u.id)
+        .put("nombre", u.nombre)
+        .put("email", u.email)
+        .put("telefono", u.telefono)
+    // u.password NO se envía nunca
+
+    private fun mascotaJson(m: Mascota): JSONObject = JSONObject()
+        .put("id", m.id)
+        .put("nombre", m.nombre)
+        .put("especie", m.especie)
+        .put("raza", m.raza)
+        .put("sexo", m.sexo)
+        .put("fechaNacimiento", m.fechaNacimiento)
+        .put("peso", m.peso)
+    // m.foto es una ruta dentro del celular: fuera de la app no sirve, no se envía
+
+    private fun datosCita(u: Usuario, m: Mascota, s: Servicio, c: Cita): JSONObject = JSONObject()
+        .put("usuario", usuarioJson(u))
+        .put("mascota", mascotaJson(m))
+        .put(
+            "servicio", JSONObject()
+                .put("id", s.id)
+                .put("nombre", s.nombre)
+                .put("precio", s.precio)
+        )
+        .put(
+            "cita", JSONObject()
+                .put("id", c.id)
+                .put("fecha", c.fecha)
+                .put("hora", c.hora)
+                .put("estado", c.estado)
+                .put("notas", c.notas)
+        )
+
+    // ------------------------------------------------------------------ Envío
+
+    private fun enviar(evento: String, datos: JSONObject) {
         val url = BuildConfig.MAKE_WEBHOOK_URL
         if (url.isBlank()) {
-            Log.w(TAG, "No hay MAKE_WEBHOOK_URL en local.properties: no se envía \"$evento\"")
+            Log.w(TAG, "Falta MAKE_WEBHOOK_URL en local.properties: no se envía \"$evento\"")
             return
         }
+        if (BuildConfig.MAKE_CLAVE_APP.isBlank()) {
+            Log.w(TAG, "Falta MAKE_CLAVE_APP en local.properties: Make va a rechazar \"$evento\"")
+        }
 
-        val cuerpo = JSONObject()
-            .put("evento", evento)
-            .put("app", "Huellitas")
-            .put("enviado_en", SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date()))
-            .put("datos", datos)
+        datos.put("evento", evento)
+            .put("clave_app", BuildConfig.MAKE_CLAVE_APP)
+            .put("enviado_en", SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.US).format(Date()))
+            .put(
+                "app", JSONObject()
+                    .put("nombre", "Huellitas")
+                    .put("version", VERSION_APP)
+                    .put("plataforma", "Android")
+            )
 
         val peticion = Request.Builder()
             .url(url)
-            .post(cuerpo.toString().toRequestBody(JSON))
+            .post(datos.toString().toRequestBody(JSON))
             .build()
 
         cliente.newCall(peticion).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                Log.e(TAG, "No se pudo enviar \"$evento\": ${e.message}")
+                Log.e(TAG, "No se pudo enviar \"$evento\" a Make: ${e.message}")
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -77,68 +165,4 @@ object MakeWebhook {
             }
         })
     }
-
-    // ---------- Eventos de la app ----------
-
-    fun usuarioRegistrado(usuario: Usuario) {
-        enviar("usuario_registrado", usuarioJson(usuario))
-    }
-
-    fun citaAgendada(
-        citaId: Long,
-        usuario: Usuario?,
-        mascota: Mascota,
-        servicio: Servicio,
-        fecha: String,
-        hora: String,
-        notas: String
-    ) {
-        val datos = JSONObject()
-            .put("cita", JSONObject()
-                .put("id", citaId)
-                .put("fecha", fecha)
-                .put("fecha_legible", MascotaUtils.fechaParaMostrar(fecha))
-                .put("hora", hora)
-                .put("estado", "PENDIENTE")
-                .put("notas", notas))
-            .put("mascota", JSONObject()
-                .put("nombre", mascota.nombre)
-                .put("especie", mascota.especie)
-                .put("raza", mascota.raza)
-                .put("sexo", mascota.sexo))
-            .put("servicio", JSONObject()
-                .put("nombre", servicio.nombre)
-                .put("precio", servicio.precio))
-        if (usuario != null) datos.put("usuario", usuarioJson(usuario))
-        enviar("cita_agendada", datos)
-    }
-
-    fun citaActualizada(
-        citaId: Int,
-        nuevoEstado: String,
-        mascotaNombre: String,
-        servicioNombre: String,
-        fecha: String,
-        hora: String,
-        usuario: Usuario?
-    ) {
-        val datos = JSONObject()
-            .put("cita", JSONObject()
-                .put("id", citaId)
-                .put("estado", nuevoEstado)
-                .put("fecha", fecha)
-                .put("fecha_legible", MascotaUtils.fechaParaMostrar(fecha))
-                .put("hora", hora))
-            .put("mascota", JSONObject().put("nombre", mascotaNombre))
-            .put("servicio", JSONObject().put("nombre", servicioNombre))
-        if (usuario != null) datos.put("usuario", usuarioJson(usuario))
-        enviar("cita_actualizada", datos)
-    }
-
-    // Nunca se envía la contraseña
-    private fun usuarioJson(u: Usuario) = JSONObject()
-        .put("id", u.id)
-        .put("nombre", u.nombre)
-        .put("email", u.email)
-        .put("telefono", u.telefono)
 }
