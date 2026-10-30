@@ -54,6 +54,9 @@ abstract class VeterinariaDatabase : RoomDatabase() {
                     NOMBRE_BD
                 )
                     .addMigrations(MIGRACION_1_2, MIGRACION_2_3)
+                    // Si se instala una versión más vieja de la app encima (por ejemplo al cambiar
+                    // de rama), se recrea la base en vez de cerrarse
+                    .fallbackToDestructiveMigrationOnDowngrade(true)
                     .addCallback(precargarDatosIniciales)
                     .build()
                     .also { INSTANCIA = it }
@@ -80,6 +83,8 @@ abstract class VeterinariaDatabase : RoomDatabase() {
 
                 // Alterar tabla citas
                 db.execSQL("ALTER TABLE citas ADD COLUMN veterinarioId INTEGER DEFAULT NULL")
+                // Room espera este índice (Cita.kt lo declara); sin él la app se cierra al migrar
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_citas_veterinarioId` ON `citas` (`veterinarioId`)")
 
                 // Crear tabla historial_medico
                 db.execSQL(
