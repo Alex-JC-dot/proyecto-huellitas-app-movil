@@ -21,6 +21,7 @@ import com.AlexYChristian.ProyectoSis145.data.entity.Servicio
 import com.AlexYChristian.ProyectoSis145.ui.mascotas.DetalleMascotaActivity
 import com.AlexYChristian.ProyectoSis145.ui.mascotas.RegistrarMascotaActivity
 import com.AlexYChristian.ProyectoSis145.util.CitaUtils
+import com.AlexYChristian.ProyectoSis145.util.MakeWebhook
 import com.AlexYChristian.ProyectoSis145.util.MascotaUtils
 import com.AlexYChristian.ProyectoSis145.util.ServicioEstilo
 import com.AlexYChristian.ProyectoSis145.util.configurarCabeceraVerde
@@ -249,7 +250,14 @@ class AgendarCitaActivity : AppCompatActivity() {
                 hora = hora,
                 notas = etNotas.text.toString().trim()
             )
-            VeterinariaDatabase.getInstance(this@AgendarCitaActivity).citaDao().insertar(cita)
+            val db = VeterinariaDatabase.getInstance(this@AgendarCitaActivity)
+            val citaId = db.citaDao().insertar(cita)
+
+            // Avisar a Make con todos los datos de la cita
+            val usuario = db.usuarioDao().obtenerPorId(SessionManager(this@AgendarCitaActivity).obtenerUsuarioId())
+            if (usuario != null) {
+                MakeWebhook.citaAgendada(usuario, mascota, servicio, cita.copy(id = citaId.toInt()))
+            }
 
             Toast.makeText(
                 this@AgendarCitaActivity,

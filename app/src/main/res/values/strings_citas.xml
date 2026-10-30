@@ -39,6 +39,28 @@
     <string name="citas_cerrar">Cerrar</string>
     <string name="citas_actualizada">Cita actualizada</string>
 
+    <!-- Registrar vacuna (al completar una cita de vacunación) -->
+    <string name="vacuna_titulo">💉 ¿Qué vacuna recibió %1$s?</string>
+    <string name="vacuna_campo">Vacuna aplicada</string>
+    <string name="vacuna_proxima">Próxima dosis</string>
+    <string name="vacuna_refuerzo_1_anio">En 1 año</string>
+    <string name="vacuna_refuerzo_6_meses">En 6 meses</string>
+    <string name="vacuna_refuerzo_1_mes">En 1 mes</string>
+    <string name="vacuna_sin_refuerzo">Sin refuerzo</string>
+    <string name="vacuna_guardar">Guardar</string>
+    <string name="vacuna_omitir">Sin vacuna</string>
+    <string name="vacuna_error_nombre">Escribe o elige la vacuna</string>
+    <string name="vacuna_guardada">Vacuna registrada en la ficha de %1$s 💉</string>
+    <string-array name="vacunas_comunes">
+        <item>Rabia</item>
+        <item>Parvovirus</item>
+        <item>Moquillo</item>
+        <item>Polivalente (séxtuple)</item>
+        <item>Triple felina</item>
+        <item>Leucemia felina</item>
+        <item>Tos de las perreras (Bordetella)</item>
+    </string-array>
+
     <!-- Servicios -->
     <string name="servicios_titulo">Servicios</string>
     <string name="servicios_subtitulo">Precios en bolivianos (Bs)</string>

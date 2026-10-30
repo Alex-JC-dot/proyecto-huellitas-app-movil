@@ -2,10 +2,12 @@ package com.AlexYChristian.ProyectoSis145.ui.citas
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,12 +16,17 @@ import com.AlexYChristian.ProyectoSis145.R
 import com.AlexYChristian.ProyectoSis145.data.SessionManager
 import com.AlexYChristian.ProyectoSis145.data.VeterinariaDatabase
 import com.AlexYChristian.ProyectoSis145.data.entity.Cita
+import com.AlexYChristian.ProyectoSis145.data.entity.Vacuna
 import com.AlexYChristian.ProyectoSis145.data.model.CitaDetalle
 import com.AlexYChristian.ProyectoSis145.util.CitaUtils
+import com.AlexYChristian.ProyectoSis145.util.MakeWebhook
 import com.AlexYChristian.ProyectoSis145.util.configurarCabeceraVerde
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
 
 /**
@@ -30,6 +37,8 @@ import kotlinx.coroutines.launch
  *    - Pasadas: completadas, canceladas o con fecha vencida (la más reciente primero).
  *    - Todas.
  * 3. Al tocar una cita pendiente se puede marcar como completada o cancelarla.
+ *    Si es de vacunación, al completarla se registra la vacuna en la ficha de la mascota.
+ * 4. Cada cambio se avisa al escenario de Make (MakeWebhook).
  */
 class CitasActivity : AppCompatActivity() {
 
@@ -102,17 +111,105 @@ class CitasActivity : AppCompatActivity() {
         MaterialAlertDialogBuilder(this)
             .setTitle("${cita.servicioNombre} · ${cita.mascotaNombre}")
             .setItems(opciones) { _, posicion ->
-                val nuevoEstado = if (posicion == 0) Cita.ESTADO_COMPLETADA else Cita.ESTADO_CANCELADA
-                cambiarEstado(cita, nuevoEstado)
+                when {
+                    posicion == 1 -> cambiarEstado(cita, Cita.ESTADO_CANCELADA)
+                    // Si era una cita de vacunación, se pregunta qué vacuna se aplicó
+                    esVacunacion(cita) -> mostrarDialogoVacuna(cita)
+                    else -> cambiarEstado(cita, Cita.ESTADO_COMPLETADA)
+                }
             }
             .setNegativeButton(R.string.citas_cerrar, null)
             .show()
     }
 
-    private fun cambiarEstado(cita: CitaDetalle, estado: String) {
+    private fun esVacunacion(cita: CitaDetalle) = "vacun" in cita.servicioNombre.lowercase()
+
+    /**
+     * Diálogo para registrar la vacuna aplicada: nombre (lista o escrito) y cuándo es la
+     * próxima dosis. Al guardar, la cita queda COMPLETADA y la vacuna pasa a la ficha.
+     */
+    private fun mostrarDialogoVacuna(cita: CitaDetalle) {
+        val vista = LayoutInflater.from(this).inflate(R.layout.dialog_vacuna, null)
+        val tilVacuna = vista.findViewById<TextInputLayout>(R.id.tilVacuna)
+        val actvVacuna = vista.findViewById<MaterialAutoCompleteTextView>(R.id.actvVacuna)
+        val chipsRefuerzo = vista.findViewById<ChipGroup>(R.id.chipsRefuerzo)
+
+        actvVacuna.setSimpleItems(resources.getStringArray(R.array.vacunas_comunes))
+
+        val dialogo = MaterialAlertDialogBuilder(this)
+            .setTitle(getString(R.string.vacuna_titulo, cita.mascotaNombre))
+            .setView(vista)
+            .setPositiveButton(R.string.vacuna_guardar, null)   // se configura abajo para validar
+            .setNeutralButton(R.string.vacuna_omitir) { _, _ -> cambiarEstado(cita, Cita.ESTADO_COMPLETADA) }
+            .setNegativeButton(R.string.citas_cerrar, null)
+            .create()
+
+        dialogo.setOnShowListener {
+            dialogo.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                val nombre = actvVacuna.text.toString().trim()
+                if (nombre.isEmpty()) {
+                    tilVacuna.error = getString(R.string.vacuna_error_nombre)
+                    return@setOnClickListener
+                }
+                val proximaDosis = when (chipsRefuerzo.checkedChipId) {
+                    R.id.chipRefuerzo1Mes -> CitaUtils.fechaEnMeses(1)
+                    R.id.chipRefuerzo6Meses -> CitaUtils.fechaEnMeses(6)
+                    R.id.chipSinRefuerzo -> ""
+                    else -> CitaUtils.fechaEnMeses(12)   // "En 1 año"
+                }
+                dialogo.dismiss()
+                cambiarEstado(cita, Cita.ESTADO_COMPLETADA, nombre, proximaDosis)
+            }
+        }
+        dialogo.show()
+    }
+
+    /**
+     * Cambia el estado de la cita. Si se pasa una vacuna, también la guarda en la ficha.
+     * Después avisa a Make: "cita_estado" y, si hubo vacuna, "vacuna_registrada".
+     */
+    private fun cambiarEstado(
+        cita: CitaDetalle,
+        estado: String,
+        vacunaNombre: String? = null,
+        proximaDosis: String = ""
+    ) {
         lifecycleScope.launch {
-            VeterinariaDatabase.getInstance(this@CitasActivity).citaDao().actualizarEstado(cita.id, estado)
-            Toast.makeText(this@CitasActivity, R.string.citas_actualizada, Toast.LENGTH_SHORT).show()
+            val db = VeterinariaDatabase.getInstance(this@CitasActivity)
+            db.citaDao().actualizarEstado(cita.id, estado)
+
+            var vacuna: Vacuna? = null
+            if (vacunaNombre != null) {
+                val nueva = Vacuna(
+                    mascotaId = cita.mascotaId,
+                    nombre = vacunaNombre,
+                    fechaAplicacion = CitaUtils.hoyBD(),
+                    proximaDosis = proximaDosis
+                )
+                vacuna = nueva.copy(id = db.vacunaDao().insertar(nueva).toInt())
+            }
+
+            // Avisar a Make con los datos completos
+            val usuario = db.usuarioDao().obtenerPorId(SessionManager(this@CitasActivity).obtenerUsuarioId())
+            val mascota = db.mascotaDao().obtenerPorId(cita.mascotaId)
+            val servicio = db.servicioDao().obtenerPorId(cita.servicioId)
+            if (usuario != null && mascota != null && servicio != null) {
+                val citaActualizada = Cita(
+                    id = cita.id,
+                    mascotaId = cita.mascotaId,
+                    servicioId = cita.servicioId,
+                    fecha = cita.fecha,
+                    hora = cita.hora,
+                    estado = estado,
+                    notas = cita.notas
+                )
+                MakeWebhook.citaCambioEstado(usuario, mascota, servicio, citaActualizada)
+                vacuna?.let { MakeWebhook.vacunaRegistrada(usuario, mascota, it) }
+            }
+
+            val mensaje = if (vacuna != null) getString(R.string.vacuna_guardada, cita.mascotaNombre)
+            else getString(R.string.citas_actualizada)
+            Toast.makeText(this@CitasActivity, mensaje, Toast.LENGTH_SHORT).show()
             cargarCitas()
         }
     }
