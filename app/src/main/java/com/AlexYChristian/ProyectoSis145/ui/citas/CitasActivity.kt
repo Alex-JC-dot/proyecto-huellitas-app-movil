@@ -16,6 +16,7 @@ import com.AlexYChristian.ProyectoSis145.data.VeterinariaDatabase
 import com.AlexYChristian.ProyectoSis145.data.entity.Cita
 import com.AlexYChristian.ProyectoSis145.data.model.CitaDetalle
 import com.AlexYChristian.ProyectoSis145.util.CitaUtils
+import com.AlexYChristian.ProyectoSis145.util.MakeWebhook
 import com.AlexYChristian.ProyectoSis145.util.configurarCabeceraVerde
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -111,7 +112,12 @@ class CitasActivity : AppCompatActivity() {
 
     private fun cambiarEstado(cita: CitaDetalle, estado: String) {
         lifecycleScope.launch {
-            VeterinariaDatabase.getInstance(this@CitasActivity).citaDao().actualizarEstado(cita.id, estado)
+            val db = VeterinariaDatabase.getInstance(this@CitasActivity)
+            db.citaDao().actualizarEstado(cita.id, estado)
+
+            // Avisar a Make del cambio (completada o cancelada)
+            val usuario = db.usuarioDao().obtenerPorId(SessionManager(this@CitasActivity).obtenerUsuarioId())
+            MakeWebhook.citaActualizada(cita.id, estado, cita.mascotaNombre, cita.servicioNombre, cita.fecha, cita.hora, usuario)
             Toast.makeText(this@CitasActivity, R.string.citas_actualizada, Toast.LENGTH_SHORT).show()
             cargarCitas()
         }

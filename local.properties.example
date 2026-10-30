@@ -1,0 +1,3 @@
+# Copia las líneas que necesites a tu local.properties (ese archivo NO se sube a GitHub).
+# URL del webhook de Make (Escenario → módulo "Webhooks" → "Custom webhook" → Copy address)
+MAKE_WEBHOOK_URL=https://hook.us2.make.com/tu-codigo-aqui
